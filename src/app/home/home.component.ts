@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
       this.items = [
           {
               icon: 'pi pi-home',
+              routerLink: '/home'
           },
           {
               label: 'Relatórios',

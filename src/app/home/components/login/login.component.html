@@ -1,0 +1,62 @@
+<div class="py-5">
+    <div class="container d-flex justify-content-center">
+        <form 
+            class="bg-formulario p-5 mb-5"
+            [formGroup]="loginForm"
+            (ngSubmit)="enter()"
+        >
+            <div class="row">
+                <div class="col mb-3 d-flex flex-column align-items-center">
+                    <div class="mb-3">
+                        <label for="email">E-mail</label>
+                        <input 
+                            type="email"
+                            name="email"
+                            id="email"
+                            class="form-control"
+                            formControlName="email"
+                        >
+                        <div 
+                            class="mt-1"
+                            *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].dirty && submitedCalled"
+                        >
+                            <p-message 
+                                severity="error" 
+                                text="Email inválido"
+                            >
+                            </p-message>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="senha">password</label>
+                        <input
+                            type="password"
+                            name="senha"
+                            id="senha"
+                            class="form-control"
+                            formControlName="password"
+                        >
+                        <div 
+                            class="mt-1"
+                            *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].dirty"
+                        >
+                            <p-message 
+                                severity="error" 
+                                text="O mínimo é 6 caracters"
+                            >
+                            </p-message>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button 
+                            class="btn btn-primary"
+                            type="submit"
+                        >
+                            Entrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
