@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import {MessageModule} from 'primeng/message';
 import {InputTextModule} from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
         ReactiveFormsModule,
         MessageModule,
         InputTextModule,
-        HttpClientModule
+        HttpClientModule,
+        ToastModule
     ]
 })
 export class HomeModule { }

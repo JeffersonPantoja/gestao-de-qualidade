@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
 import { LoginService } from './login.service';
+import { ToastService } from 'src/app/share/service/toast/toast.service';
+import { Message } from 'src/app/share/enum/message.enum';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   public loginForm: FormGroup;
 
@@ -18,13 +20,18 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private toastService: ToastService
   ) { 
     this.submitedCalled = false;
     this.createLoginForm();
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    throw new Error("Method not implemented.");
   }
 
   private createLoginForm(): void {
@@ -39,7 +46,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loginService.enter(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe((token: String) => {
-        console.log(token);
+        this.toastService.showSuccess.next(Message.LOGIN_SUCCESS);
       });
 
     }
