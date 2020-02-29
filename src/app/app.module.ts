@@ -19,7 +19,7 @@ import { ToastComponent } from './share/component/toast/toast.component';
   declarations: [
     AppComponent,
     ProgressbarComponent,
-    ToastComponent
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

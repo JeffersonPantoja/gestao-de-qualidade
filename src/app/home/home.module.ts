@@ -7,13 +7,13 @@ import { RouterModule } from '@angular/router';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
-import {MessageModule} from 'primeng/message';
-import {InputTextModule} from 'primeng/inputtext';
+import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InternoModule } from '../interno/interno.module';
 
 @NgModule({
     declarations: [
@@ -32,9 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
         ToolbarModule,
         ReactiveFormsModule,
         MessageModule,
-        InputTextModule,
         HttpClientModule,
-        ToastModule
+        ToastModule,
+        InternoModule
     ]
 })
 export class HomeModule { }

@@ -6,10 +6,10 @@ import { Subject } from 'rxjs';
 })
 export class ToastService {
 
-  public showError: Subject<string> = new Subject();
   public showSuccess: Subject<string> = new Subject();
   public showInfo: Subject<string> = new Subject();
   public showWarn: Subject<string> = new Subject();
+  public showError: Subject<string> = new Subject();
 
   constructor() { }
 

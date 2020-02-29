@@ -1,3 +1,4 @@
 export enum Constants {
-    TOKEN = 'token'
+    TOKEN = 'token',
+    TIME_STAMP = 'time_stamp'
 }

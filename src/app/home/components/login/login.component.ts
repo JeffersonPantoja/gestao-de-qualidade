@@ -6,13 +6,16 @@ import { Subscription } from 'rxjs';
 import { LoginService } from './login.service';
 import { ToastService } from 'src/app/share/service/toast/toast.service';
 import { Message } from 'src/app/share/enum/message.enum';
+import { Login } from 'src/app/share/interface/login.interface';
+import { AuthGuard } from 'src/app/auth/auth.guard';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
@@ -21,17 +24,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private auth: AuthGuard,
+    private router: Router
   ) { 
     this.submitedCalled = false;
     this.createLoginForm();
   }
 
   ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-    throw new Error("Method not implemented.");
   }
 
   private createLoginForm(): void {
@@ -45,8 +46,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.submitedCalled = true;
     if (this.loginForm.valid) {
       this.loginService.enter(this.loginForm.value.email, this.loginForm.value.password)
-      .subscribe((token: String) => {
+      .subscribe((login: Login) => {
         this.toastService.showSuccess.next(Message.LOGIN_SUCCESS);
+        this.auth.saveToken(login);
+        this.router.navigate(['/home']);
       });
 
     }

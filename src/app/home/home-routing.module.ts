@@ -11,9 +11,14 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
-      { path: 'login', component: LoginComponent}
+      { path: 'login', component: LoginComponent},
+      {
+        path: '',
+        loadChildren: () => import('../interno/interno.module').then(m => m.InternoModule)
+      }
     ]
   },
+  
     
 ];
 

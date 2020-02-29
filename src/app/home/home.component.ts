@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {MenuItem} from 'primeng/api';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,8 +29,14 @@ export class HomeComponent implements OnInit {
             label: 'Interno',
             icon: 'pi pi-users',
             items: [
-              { label: 'Setor', },
-              { label: 'Produtos'},
+              { 
+                label: 'Setor',
+                routerLink: 'interno/setor'
+              },
+              { 
+                label: 'Produtos',
+                routerLink: 'interno/produto'
+              },
               { label: 'Usuários'},
               { label: 'Atividades'},
               { label: 'Incidentes'},

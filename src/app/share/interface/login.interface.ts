@@ -1,3 +1,3 @@
 export interface Login {
-    login: string;
+    token: string;
 }
