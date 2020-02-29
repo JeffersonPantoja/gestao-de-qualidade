@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import * as JWT from 'jwt-decode';
 
 import { Login } from '../share/interface/login.interface';
@@ -12,15 +12,18 @@ import { Constants } from '../share/enum/constants.enum';
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
 
-  constructor(private router: Router) {
+  public isAutenticated: Subject<boolean> = new Subject();
 
-  }
+  constructor(private router: Router) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.validateTimeStamp() && this.validateToken();
+    const autenticated = this.validateTimeStamp() && this.validateToken();
+    this.isAutenticated.next(autenticated);
+    return autenticated;
   }
+
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -32,12 +35,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       const dateAtual = new Date();
       const dateVencimento = new Date(parseInt(localStorage[Constants.TIME_STAMP], 10));
       if ((dateVencimento < dateAtual)) {
-        this.router.navigate(['/home/login']);
+        this.router.navigate(['/home']);
         localStorage.clear();
         return false;
       }
     } else {
-      this.router.navigate(['/home/login']);
+      this.router.navigate(['/home']);
       localStorage.clear();
       return false;
     }

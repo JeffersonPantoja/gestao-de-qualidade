@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -34,7 +35,8 @@ import { InternoModule } from '../interno/interno.module';
         MessageModule,
         HttpClientModule,
         ToastModule,
-        InternoModule
+        InternoModule,
+        TooltipModule
     ]
 })
 export class HomeModule { }

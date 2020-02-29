@@ -5,11 +5,23 @@
         </div>
         <div class="ui-toolbar-group-right">
             <button
+                *ngIf="!isAutenticated"
                 pButton
+                pTooltip="Entrar"
                 type="button"
                 icon="pi pi-sign-in"
                 class="ui-button-primary mr-1"
                 routerLink="/home/login"
+            >
+            </button>
+            <button
+                *ngIf="isAutenticated"
+                pButton
+                pTooltip="Sair"
+                type="button"
+                icon="pi pi-sign-out"
+                class="ui-button-primary mr-1"
+                (click)="logout()"
             >
             </button>
         </div>

@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
       .subscribe((login: Login) => {
         this.toastService.showSuccess.next(Message.LOGIN_SUCCESS);
         this.auth.saveToken(login);
+        this.auth.isAutenticated.next(true);
         this.router.navigate(['/home']);
       });
 
