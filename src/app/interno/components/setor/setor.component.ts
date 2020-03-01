@@ -42,7 +42,8 @@ export class SetorComponent implements OnInit {
     this.setorForm = this.formBuilder.group({
       id: [setor.id],
       nome: [setor.nome, Validators.required],
-      descricao: [setor.descricao, Validators.required]
+      descricao: [setor.descricao, Validators.required],
+      ativo: [setor.ativo]
     });
   }
 
@@ -67,19 +68,19 @@ export class SetorComponent implements OnInit {
     this.createFormSetor(setor);
   }
 
-  public cancel() {
+  public cancel(): void {
     this.toEdit = false;
     this.toRegister = false;
   }
 
-  public save() {
+  public save(): void {
     if (this.setorForm.valid) {
       if (this.toRegister) {
-        this.setorService.registerSetor(this.setorForm.value).subscribe(() => {
+        this.setorService.register(this.setorForm.value).subscribe(() => {
           this.updatePage(Message.SAVE_SUCCESS);
         });
       } else if (this.toEdit) {
-        this.setorService.editSetor(this.setorForm.value).subscribe(() => {
+        this.setorService.edit(this.setorForm.value).subscribe(() => {
           this.updatePage(Message.SAVE_SUCCESS);
         });
       }
@@ -88,7 +89,7 @@ export class SetorComponent implements OnInit {
 
   public deactivate (setor: Setor): void {
     setor.ativo = !setor.ativo;
-    this.setorService.editSetor(setor).subscribe(() => {
+    this.setorService.edit(setor).subscribe(() => {
       if (setor.ativo) {
         this.toastService.showSuccess.next(Message.ACTIVATED_SUCCESS);
       } else {

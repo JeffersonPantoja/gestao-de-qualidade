@@ -148,6 +148,99 @@ app.put(baseUrl + "interno/setor", (req, res) => {
   }, 1500);
 })
 
+var produtos = [
+  {
+    "id": 1,
+    "nome": "Produto 01",
+    "descricao": "Descrição 01",
+    "ativo": true
+  },
+  {
+    "id": 2,
+    "nome": "Produto 02",
+    "descricao": "Descrição 02",
+    "ativo": true
+  },
+  {
+    "id": 3,
+    "nome": "Produto 03",
+    "descricao": "Descrição 03",
+    "ativo": true
+  },
+  {
+    "id": 4,
+    "nome": "Produto 04",
+    "descricao": "Descrição 04",
+    "ativo": true
+  },
+  {
+    "id": 5,
+    "nome": "Produto 05",
+    "descricao": "Descrição 05",
+    "ativo": true
+  },
+  {
+    "id": 6,
+    "nome": "Produto 06",
+    "descricao": "Descrição 06",
+    "ativo": true
+  },
+  {
+    "id": 7,
+    "nome": "Produto 07",
+    "descricao": "Descrição 07",
+    "ativo": true
+  },
+  {
+    "id": 8,
+    "nome": "Produto 08",
+    "descricao": "Descrição 08",
+    "ativo": true
+  },
+  {
+    "id": 9,
+    "nome": "Produto 09",
+    "descricao": "Descrição 09",
+    "ativo": true
+  },
+  {
+    "id": 10,
+    "nome": "Produto 10",
+    "descricao": "Descrição 10",
+    "ativo": true
+  },
+];
+
+app.get(baseUrl + "interno/produto?", (req, res) => {
+  const firstItemPage = parseInt(req.query.firstItemPage, 10);
+  setTimeout(() => {
+    res.json({
+      totalRecords: produtos.length,
+      produtos: produtos.slice(firstItemPage, firstItemPage+ 10)
+    });
+  }, 1500);
+})
+
+app.post(baseUrl + "interno/produto", (req, res) => {
+  setTimeout(() => {
+    req.body.id = (new Date()).getTime();
+    produtos.push(req.body)
+    res.json();
+  }, 1500);
+})
+
+app.put(baseUrl + "interno/produto", (req, res) => {
+  setTimeout(() => {
+    produtos = produtos.map((produto) => {
+      if (produto.id === req.body.id) {
+        produto = req.body;
+      }
+      return produto;
+    })
+    res.json();
+  }, 1500);
+})
+
 function return401(res) {
   setTimeout(() => {
     res.status(401).send("Autenticação inválida, faça o login novamente");

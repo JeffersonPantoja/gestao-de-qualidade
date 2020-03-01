@@ -4,33 +4,32 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Paginator } from 'src/app/share/interface/paginator.interface';
 import { Url } from 'src/app/share/enum/url.enum';
-import { Setor } from 'src/app/share/domain/setor';
+import { Paginator } from 'primeng/paginator/paginator';
+import { Produto } from 'src/app/share/domain/produto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SetorService {
+export class ProdutoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getSetores(firstItemPage: number): Observable<object> {
+  public getProdutos(firstItemPage: number): Observable<object> {
     return this.httpClient.get<Observable<Paginator>>(
-      `${environment.URL_BASE}${Url.INTERNO_SETOR}?firstItemPage=${firstItemPage}`,
+      `${environment.URL_BASE}${Url.INTERNO_PRODUTO}?firstItemPage=${firstItemPage}`,
     );
   }
 
-  public register(setor: Setor): Observable<object> {
+  public register(produto: Produto): Observable<object> {
     return this.httpClient.post<Observable<Paginator>>(
-      `${environment.URL_BASE}${Url.INTERNO_SETOR}`, setor
+      `${environment.URL_BASE}${Url.INTERNO_PRODUTO}`, produto
     );
   }
 
-  public edit(setor: Setor): Observable<object> {
+  public edit(produto: Produto): Observable<object> {
     return this.httpClient.put<Observable<Paginator>>(
-      `${environment.URL_BASE}${Url.INTERNO_SETOR}`, setor
+      `${environment.URL_BASE}${Url.INTERNO_PRODUTO}`, produto
     );
   }
 }
-
