@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { FieldsetModule } from 'primeng/fieldset';
 
 import { HttpClientModule } from '@angular/common/http';
 import { InternoComponent } from './interno.component';
@@ -29,6 +30,7 @@ import { ProdutoComponent } from './components/produto/produto.component';
         ReactiveFormsModule,
         HttpClientModule,
         TableModule,
+        FieldsetModule
     ]
 })
 export class InternoModule { }

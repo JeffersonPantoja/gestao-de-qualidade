@@ -1,8 +1,62 @@
 <div class="py-3">
+
+
     <div class="container d-flex justify-content-center">
-        <div 
-            class="bg-formulario p-3 m-3"
-        >
+        <div class="bg-formulario p-3 m-3">
+
+            <p-fieldset 
+                [legend]="toRegister ? 'Novo cadastro' : 'Editar'"
+                styleClass="mb-3"
+                *ngIf="toRegister || toEdit"
+            >
+                <form
+                    [formGroup]="setorForm"
+                    (submit)="save()"
+                >
+                    <div class="row">
+                        <div class="ml-3 mr-3 mb-3">
+                            <div class="mb-3">
+                                <label for="nome">Nome <span class="text-danger">*</span></label>
+                                <input 
+                                    type="text"
+                                    name="nome"
+                                    id="nome"
+                                    class="form-control"
+                                    formControlName="nome"
+                                >
+                            </div>
+                            <div>
+                                <label for="descricao">Descrição <span class="text-danger">*</span></label>
+                                <textarea 
+                                    id="descricao" 
+                                    rows="2"
+                                    cols="50" 
+                                    class="form-control"
+                                    formControlName=descricao
+                                >
+                                </textarea> 
+                            </div>
+                            <div class="mt-3 d-flex justify-content-right">
+                                <button
+                                    type="button"
+                                    class="btn btn-light mr-1"
+                                    (click)="cancel()"
+                                >
+                                    Cancelar
+                                </button>
+                                <button
+                                    type="submit"
+                                    class="btn btn-success"
+                                >
+                                    Salvar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+            </p-fieldset>
+
             <p-table 
                 [value]="setores"
                 [responsive]="true"
@@ -13,7 +67,17 @@
                 [rows]="10"
             >
                 <ng-template pTemplate="caption">
-                    Lista de setores
+                    <div class="d-flex justify-content-between">
+                        <h5>Lista de setores</h5>
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-plus"
+                            class="ui-button-success mr-1"
+                            (click)="openRegister()"
+                        >
+                        </button>
+                    </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
@@ -30,20 +94,28 @@
                             <div class="d-flex justify-content-center">
                                 <button
                                     pButton
-                                    pTooltip="Editar"
                                     type="button"
                                     icon="pi pi-pencil"
                                     class="ui-button-warning mr-1"
-                                    routerLink="/home/login"
+                                    (click)="openEdit(setor)"
                                 >
                                 </button>
                                 <button
+                                    *ngIf="setor.ativo"
                                     pButton
-                                    pTooltip="Editar"
                                     type="button"
-                                    icon="pi pi-trash"
-                                    class="ui-button-danger mr-1"
-                                    routerLink="/home/login"
+                                    icon="pi pi-check"
+                                    class="ui-button-success mr-1"
+                                    (click)="deactivate(setor)"
+                                >
+                                </button>
+                                <button
+                                    *ngIf="!setor.ativo"
+                                    pButton
+                                    type="button"
+                                    icon="pi pi-minus"
+                                    class="ui-button-secondary mr-1"
+                                    (click)="deactivate(setor)"
                                 >
                                 </button>
                             </div>

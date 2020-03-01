@@ -55,65 +55,96 @@ app.post(baseUrl + "login/enter", (req, res) => {
   }, 1500);
 });
 
-const setores = [
+var setores = [
   {
     "id": 1,
     "nome": "Setor 01",
-    "descricao": "Descrição 01"
+    "descricao": "Descrição 01",
+    "ativo": true
   },
   {
     "id": 2,
     "nome": "Setor 02",
-    "descricao": "Descrição 02"
+    "descricao": "Descrição 02",
+    "ativo": true
   },
   {
     "id": 3,
     "nome": "Setor 03",
-    "descricao": "Descrição 03"
+    "descricao": "Descrição 03",
+    "ativo": true
   },
   {
     "id": 4,
     "nome": "Setor 04",
-    "descricao": "Descrição 04"
+    "descricao": "Descrição 04",
+    "ativo": true
   },
   {
     "id": 5,
     "nome": "Setor 05",
-    "descricao": "Descrição 05"
+    "descricao": "Descrição 05",
+    "ativo": true
   },
   {
     "id": 6,
     "nome": "Setor 06",
-    "descricao": "Descrição 06"
+    "descricao": "Descrição 06",
+    "ativo": true
   },
   {
     "id": 7,
     "nome": "Setor 07",
-    "descricao": "Descrição 07"
+    "descricao": "Descrição 07",
+    "ativo": true
   },
   {
     "id": 8,
     "nome": "Setor 08",
-    "descricao": "Descrição 08"
+    "descricao": "Descrição 08",
+    "ativo": true
   },
   {
     "id": 9,
     "nome": "Setor 09",
-    "descricao": "Descrição 09"
+    "descricao": "Descrição 09",
+    "ativo": true
   },
   {
     "id": 10,
     "nome": "Setor 10",
-    "descricao": "Descrição 10"
+    "descricao": "Descrição 10",
+    "ativo": true
   },
 ];
 
-app.get(baseUrl + "interno/setor", (req, res) => {
+app.get(baseUrl + "interno/setor?", (req, res) => {
+  const firstItemPage = parseInt(req.query.firstItemPage, 10);
   setTimeout(() => {
     res.json({
-      totalRecords: 30,
-      setores
+      totalRecords: setores.length,
+      setores: setores.slice(firstItemPage, firstItemPage+ 10)
     });
+  }, 1500);
+})
+
+app.post(baseUrl + "interno/setor", (req, res) => {
+  setTimeout(() => {
+    req.body.id = (new Date()).getTime();
+    setores.push(req.body)
+    res.json();
+  }, 1500);
+})
+
+app.put(baseUrl + "interno/setor", (req, res) => {
+  setTimeout(() => {
+    setores = setores.map((setor) => {
+      if (setor.id === req.body.id) {
+        setor = req.body;
+      }
+      return setor;
+    })
+    res.json();
   }, 1500);
 })
 
