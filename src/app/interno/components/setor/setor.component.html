@@ -1,1 +1,56 @@
-<p>setor works!</p>
+<div class="py-3">
+    <div class="container d-flex justify-content-center">
+        <div 
+            class="bg-formulario p-3 m-3"
+        >
+            <p-table 
+                [value]="setores"
+                [responsive]="true"
+                [paginator]="true"
+                [lazy]="true"
+                (onLazyLoad)="loadPage($event)"
+                [totalRecords]="totalRecords"
+                [rows]="10"
+            >
+                <ng-template pTemplate="caption">
+                    Lista de setores
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Ações</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-setor>
+                    <tr>
+                        <td>{{setor.nome}}</td>
+                        <td>{{setor.descricao}}</td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <button
+                                    pButton
+                                    pTooltip="Editar"
+                                    type="button"
+                                    icon="pi pi-pencil"
+                                    class="ui-button-warning mr-1"
+                                    routerLink="/home/login"
+                                >
+                                </button>
+                                <button
+                                    pButton
+                                    pTooltip="Editar"
+                                    type="button"
+                                    icon="pi pi-trash"
+                                    class="ui-button-danger mr-1"
+                                    routerLink="/home/login"
+                                >
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

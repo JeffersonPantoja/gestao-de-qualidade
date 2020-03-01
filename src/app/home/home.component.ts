@@ -51,13 +51,13 @@ export class HomeComponent implements OnInit {
             routerLink: 'interno/setor'
           },
           {
-            label: 'Produtos',
+            label: 'Produto',
             routerLink: 'interno/produto',
           },
-          { label: 'Usuários' },
-          { label: 'Atividades' },
-          { label: 'Incidentes' },
-          { label: 'Planos de ação' }
+          { label: 'Usuário' },
+          { label: 'Atividade' },
+          { label: 'Incidente' },
+          { label: 'Plano de ação' }
         ]
       }
     ];

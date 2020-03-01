@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 import { HttpClientModule } from '@angular/common/http';
 import { InternoComponent } from './interno.component';
@@ -27,6 +28,7 @@ import { ProdutoComponent } from './components/produto/produto.component';
         ButtonModule,
         ReactiveFormsModule,
         HttpClientModule,
+        TableModule,
     ]
 })
 export class InternoModule { }
