@@ -31,6 +31,7 @@ export class SetorComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastService: ToastService
   ) { 
+    this.setores = [];
     this.totalRecords = 0;
     this.toRegister = false;
     this.toEdit = false;
