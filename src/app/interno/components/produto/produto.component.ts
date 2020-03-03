@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Message } from 'src/app/share/enum/message.enum';
-import { Setor } from 'src/app/share/domain/setor';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { SetorService } from '../setor/setor.service';
-import { ToastService } from 'src/app/share/service/toast/toast.service';
-import { Paginator } from 'src/app/share/interface/paginator.interface';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Produto } from 'src/app/share/domain/produto';
+import { Message } from 'src/app/share/enum/message.enum';
+import { Paginator } from 'src/app/share/interface/paginator.interface';
+import { ToastService } from 'src/app/share/service/toast/toast.service';
 import { ProdutoService } from './produto.service';
+
 
 @Component({
   selector: 'app-produto',
@@ -31,7 +31,7 @@ export class ProdutoComponent implements OnInit {
     private produtoService: ProdutoService,
     private formBuilder: FormBuilder,
     private toastService: ToastService
-  ) { 
+  ) {
     this.produtos = [];
     this.totalRecords = 0;
     this.toRegister = false;
@@ -89,7 +89,7 @@ export class ProdutoComponent implements OnInit {
     }
   }
 
-  public deactivate (produto: Produto): void {
+  public deactivate(produto: Produto): void {
     produto.ativo = !produto.ativo;
     this.produtoService.edit(produto).subscribe(() => {
       if (produto.ativo) {
@@ -99,7 +99,7 @@ export class ProdutoComponent implements OnInit {
       }
     }, () => {
       produto.ativo = !produto.ativo;
-    })
+    });
   }
 
   private updatePage(message: string): void {

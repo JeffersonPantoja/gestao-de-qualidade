@@ -1,14 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-
-import { LoginService } from './login.service';
-import { ToastService } from 'src/app/share/service/toast/toast.service';
+import { AuthGuard } from 'src/app/auth/auth.guard';
 import { Message } from 'src/app/share/enum/message.enum';
 import { Login } from 'src/app/share/interface/login.interface';
-import { AuthGuard } from 'src/app/auth/auth.guard';
-import { Router } from '@angular/router';
+import { ToastService } from 'src/app/share/service/toast/toast.service';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +25,7 @@ export class LoginComponent implements OnInit {
     private toastService: ToastService,
     private auth: AuthGuard,
     private router: Router
-  ) { 
+  ) {
     this.submitedCalled = false;
     this.createLoginForm();
   }

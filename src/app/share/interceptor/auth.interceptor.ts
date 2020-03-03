@@ -1,15 +1,12 @@
+import { HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  HttpInterceptor,
-  HttpRequest,
-  HttpHandler,
-  HttpResponse
-} from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 
-import { ProgressbarService } from '../service/progressbar/progressbar.service';
 import { Constants } from '../enum/constants.enum';
+import { ProgressbarService } from '../service/progressbar/progressbar.service';
+
+
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -25,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return event;
       }));
     } else {
-      let token = localStorage[Constants.TOKEN];
+      const token = localStorage[Constants.TOKEN];
 
       if (token !== null) {
         return next.handle(this.setHeaderWithToken(req, token)).pipe(map(event => {
@@ -37,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private dontNeedToken(req: HttpRequest<any>): boolean {
-    return req.url.includes('login/enter')
+    return req.url.includes('login/enter');
   }
 
   private setProgressbar(req: HttpRequest<any>) {

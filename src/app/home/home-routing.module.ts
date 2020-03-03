@@ -1,13 +1,14 @@
-import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './home.component';
+import { RouterModule, Routes } from '@angular/router';
+
 import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './home.component';
 
 const routes: Routes = [
   {
     path: '', redirectTo: 'home', pathMatch: 'full'
   },
-  { 
+  {
     path: 'home',
     component: HomeComponent,
     children: [
@@ -18,8 +19,8 @@ const routes: Routes = [
       }
     ]
   },
-  
-    
+
+
 ];
 
 @NgModule({

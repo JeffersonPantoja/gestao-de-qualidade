@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
-import { Url } from 'src/app/share/enum/url.enum';
 import { Paginator } from 'primeng/paginator/paginator';
+
 import { Produto } from 'src/app/share/domain/produto';
+import { Url } from 'src/app/share/enum/url.enum';
+import { environment } from 'src/environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root'

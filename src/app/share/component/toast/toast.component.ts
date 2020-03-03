@@ -1,8 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { Subscription } from 'rxjs';
+
+import { MessageService } from 'primeng/api';
 
 import { ToastService } from '../../service/toast/toast.service';
-import {MessageService} from 'primeng/api';
-import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-toast',
@@ -32,19 +35,19 @@ export class ToastComponent implements OnInit, OnDestroy {
   }
 
   private showSuccess(mensagem: string) {
-    this.messageService.add({severity:'success', summary: 'Sucesso', detail: mensagem});
+    this.messageService.add({severity: 'success', summary: 'Sucesso', detail: mensagem});
   }
 
   private showInfo(mensagem: string) {
-      this.messageService.add({severity:'info', summary: 'Informativo', detail: mensagem});
+      this.messageService.add({severity: 'info', summary: 'Informativo', detail: mensagem});
   }
 
   private showWarn(mensagem: string) {
-      this.messageService.add({severity:'warn', summary: 'Atenção', detail: mensagem});
+      this.messageService.add({severity: 'warn', summary: 'Atenção', detail: mensagem});
   }
 
   private showError(mensagem: string) {
-      this.messageService.add({severity:'error', summary: 'Erro', detail: mensagem});
+      this.messageService.add({severity: 'error', summary: 'Erro', detail: mensagem});
   }
 
 }

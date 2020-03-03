@@ -1,20 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomeRoutingModule } from './home-routing.module';
 import { RouterModule } from '@angular/router';
 
-import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
-import { ToolbarModule } from 'primeng/toolbar';
+import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 
-import { HomeComponent } from './home.component';
-import { LoginComponent } from './components/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
 import { InternoModule } from '../interno/interno.module';
+import { LoginComponent } from './components/login/login.component';
+import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
+
+
 
 @NgModule({
     declarations: [

@@ -1,10 +1,11 @@
-import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { InternoComponent } from './interno.component';
-import { SetorComponent } from './components/setor/setor.component';
-import { ProdutoComponent } from './components/produto/produto.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { ProdutoComponent } from './components/produto/produto.component';
+import { SetorComponent } from './components/setor/setor.component';
+import { InternoComponent } from './interno.component';
+
 
 const routes: Routes = [
   {

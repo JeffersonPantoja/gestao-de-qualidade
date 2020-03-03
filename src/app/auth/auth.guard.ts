@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 
-import { Observable, Subject } from 'rxjs';
 import * as JWT from 'jwt-decode';
 
-import { Login } from '../share/interface/login.interface';
+import { Observable, Subject } from 'rxjs';
+
 import { Constants } from '../share/enum/constants.enum';
+import { Login } from '../share/interface/login.interface';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +63,4 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     localStorage[Constants.TIME_STAMP] = jwtLogin.exp * 1000;
     localStorage[Constants.TOKEN] = login.token;
   }
-  
 }

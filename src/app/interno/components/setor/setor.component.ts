@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Setor } from 'src/app/share/domain/setor';
-import { SetorService } from './setor.service';
+import { Message } from 'src/app/share/enum/message.enum';
 import { Paginator } from 'src/app/share/interface/paginator.interface';
 import { ToastService } from 'src/app/share/service/toast/toast.service';
-import { Message } from 'src/app/share/enum/message.enum';
+import { SetorService } from './setor.service';
+
 
 @Component({
   selector: 'app-setor',
@@ -30,7 +31,7 @@ export class SetorComponent implements OnInit {
     private setorService: SetorService,
     private formBuilder: FormBuilder,
     private toastService: ToastService
-  ) { 
+  ) {
     this.setores = [];
     this.totalRecords = 0;
     this.toRegister = false;
@@ -88,7 +89,7 @@ export class SetorComponent implements OnInit {
     }
   }
 
-  public deactivate (setor: Setor): void {
+  public deactivate(setor: Setor): void {
     setor.ativo = !setor.ativo;
     this.setorService.edit(setor).subscribe(() => {
       if (setor.ativo) {
@@ -98,7 +99,7 @@ export class SetorComponent implements OnInit {
       }
     }, () => {
       setor.ativo = !setor.ativo;
-    })
+    });
   }
 
   private updatePage(message: string): void {
