@@ -38,12 +38,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       const dateAtual = new Date();
       const dateVencimento = new Date(parseInt(localStorage[Constants.TIME_STAMP], 10));
       if ((dateVencimento < dateAtual)) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
         localStorage.clear();
         return false;
       }
     } else {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
       localStorage.clear();
       return false;
     }

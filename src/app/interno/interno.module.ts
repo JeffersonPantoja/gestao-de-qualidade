@@ -11,14 +11,16 @@ import { ProdutoComponent } from './components/produto/produto.component';
 import { SetorComponent } from './components/setor/setor.component';
 import { InternoRoutingModule } from './interno-routing.module';
 import { InternoComponent } from './interno.component';
-
-
+import { AtividadeComponent } from './components/atividade/atividade.component';
+import { AtividadeDetalhesComponent } from './components/atividade-detalhes/atividade-detalhes.component';
 
 @NgModule({
     declarations: [
         InternoComponent,
         SetorComponent,
-        ProdutoComponent
+        ProdutoComponent,
+        AtividadeComponent,
+        AtividadeDetalhesComponent
     ],
     imports: [
         CommonModule,

@@ -241,6 +241,55 @@ app.put(baseUrl + "interno/produto", (req, res) => {
   }, 1500);
 })
 
+var atividades = [
+  {
+    id: 1,
+    titulo: 'Atividade 01',
+    descricao: 'descrição 01',
+    produto: produtos[0],
+    setor: setores[0],
+    responsaveis: [{
+      id: 1,
+      nome: 'Fulano 01',
+      email: 'fulano01@teste.com',
+      cpf: '999.999.999-99',
+      setor: setores[0],
+      perfil: 'G'
+    }],
+    dataInicio: '15/04/2020',
+    dataFim: '01/08/2020',
+    status: 'A'
+  },
+  {
+    id: 2,
+    titulo: 'Atividade 02',
+    descricao: 'descrição 02',
+    produto: produtos[0],
+    setor: setores[0],
+    responsaveis: [{
+      id: 1,
+      nome: 'Fulano 01',
+      email: 'fulano01@teste.com',
+      cpf: '999.999.999-99',
+      setor: setores[0],
+      perfil: 'G'
+    }],
+    dataInicio: '15/04/2020',
+    dataFim: '01/08/2020',
+    status: 'B'
+  }
+]
+
+app.get(baseUrl + "interno/atividade?", (req, res) => {
+  const firstItemPage = parseInt(req.query.firstItemPage, 10);
+  setTimeout(() => {
+    res.json({
+      totalRecords: atividades.length,
+      atividades: atividades.slice(firstItemPage, firstItemPage + 10)
+    });
+  }, 1500);
+})
+
 function return401(res) {
   setTimeout(() => {
     res.status(401).send("Autenticação inválida, faça o login novamente");

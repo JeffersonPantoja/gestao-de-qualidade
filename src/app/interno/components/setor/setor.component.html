@@ -1,10 +1,8 @@
 <div class="py-3">
-
-
-    <div class="container d-flex justify-content-center">
+    <div>
         <div class="bg-formulario p-3 m-3">
 
-            <p-fieldset 
+            <p-fieldset
                 [legend]="toRegister ? 'Novo cadastro' : 'Editar'"
                 styleClass="mb-3"
                 *ngIf="toRegister || toEdit"
@@ -17,7 +15,7 @@
                         <div class="ml-3 mr-3 mb-3">
                             <div class="mb-3">
                                 <label for="nome">Nome <span class="text-danger">*</span></label>
-                                <input 
+                                <input
                                     type="text"
                                     name="nome"
                                     id="nome"
@@ -27,14 +25,14 @@
                             </div>
                             <div>
                                 <label for="descricao">Descrição <span class="text-danger">*</span></label>
-                                <textarea 
-                                    id="descricao" 
+                                <textarea
+                                    id="descricao"
                                     rows="2"
-                                    cols="50" 
+                                    cols="50"
                                     class="form-control"
                                     formControlName=descricao
                                 >
-                                </textarea> 
+                                </textarea>
                             </div>
                             <div class="mt-3 d-flex justify-content-right">
                                 <button
@@ -54,10 +52,10 @@
                         </div>
                     </div>
                 </form>
-                
+
             </p-fieldset>
 
-            <p-table 
+            <p-table
                 [value]="setores"
                 [responsive]="true"
                 [paginator]="true"

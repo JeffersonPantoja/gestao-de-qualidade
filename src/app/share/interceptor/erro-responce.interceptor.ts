@@ -28,7 +28,7 @@ export class ErroResponseInterceptor implements HttpInterceptor {
             case 401:
               this.toastService.showError.next(error.error);
               localStorage.clear();
-              this.router.navigate(['/home/login']);
+              this.router.navigate(['/login']);
               break;
             case 402:
               this.toastService.showError.next(error.error);

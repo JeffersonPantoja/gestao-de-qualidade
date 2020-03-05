@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import {MenuItem} from 'primeng/api';
-import { RouterLink } from '@angular/router';
+import { MenuItem } from 'primeng/api';
+
 import { AuthGuard } from '../auth/auth.guard';
-import { ToastService } from '../share/service/toast/toast.service';
 import { Message } from '../share/enum/message.enum';
+import { ToastService } from '../share/service/toast/toast.service';
+
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { Message } from '../share/enum/message.enum';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+
   public items: MenuItem[];
 
   public isAutenticated: boolean;
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit {
     this.items = [
       {
         icon: 'pi pi-home',
-        routerLink: '/home'
+        routerLink: '/'
       },
       {
         label: 'Relatórios',
@@ -48,14 +49,17 @@ export class HomeComponent implements OnInit {
         items: [
           {
             label: 'Setor',
-            routerLink: 'interno/setor'
+            routerLink: '/interno/setor'
           },
           {
             label: 'Produto',
-            routerLink: 'interno/produto',
+            routerLink: '/interno/produto',
           },
           { label: 'Usuário' },
-          { label: 'Atividade' },
+          {
+            label: 'Atividade',
+            routerLink: '/interno/atividade'
+          },
           { label: 'Incidente' },
           { label: 'Plano de ação' }
         ]
