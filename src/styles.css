@@ -15,3 +15,7 @@ html, body {
     background: rgba(244,244,244,.9);
     box-shadow: 0 0 20px rgba(0,0,0,.8)
 }
+
+.ui-inputtext {
+  width: 100%;
+}

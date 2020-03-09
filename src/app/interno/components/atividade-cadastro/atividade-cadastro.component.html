@@ -1,0 +1,133 @@
+<div class="py-3">
+
+  <div>
+    <div class="bg-formulario p-3 m-3">
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-3">
+          <div class="mb-3">
+            <label for="titulo">Título <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              name="titulo"
+              id="titulo"
+              class="form-control"
+            >
+          </div>
+          <div class="mb-3">
+            <div>
+              <label>Status <span class="text-danger">*</span></label>
+            </div>
+            <p-dropdown
+              id="tituloDesafio"
+              [options]="cities1"
+              styleClass="w-100"
+            >
+            </p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-3">
+          <div class="mb-3">
+            <label for="descricao">Descrição<span class="text-danger"> *</span></label>
+            <textarea
+              name="descricao"
+              id="descricao"
+              class="form-control"
+              rows="5"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 mb-3">
+          <div class="mb-3">
+            <div>
+              <label>Data de inicio <span class="text-danger">*</span></label>
+            </div>
+            <p-calendar
+            [style]="{'width': '100%'}"
+            >
+            </p-calendar>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 mb-3">
+          <div class="mb-3">
+            <div>
+              <label>Data de termino <span class="text-danger">*</span></label>
+            </div>
+            <p-calendar
+              [style]="{'width': '100%'}"
+            >
+
+            </p-calendar>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-3">
+          <div class="mb-3">
+            <div>
+              <label>Setor <span class="text-danger">*</span></label>
+            </div>
+            <p-dropdown
+              id="setor"
+              [options]="cities1"
+              styleClass="w-100"
+            >
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-3">
+          <div class="mb-3">
+            <div>
+              <label>Produto <span class="text-danger">*</span></label>
+            </div>
+            <p-dropdown
+              id="produto"
+              [options]="cities1"
+              styleClass="w-100"
+            >
+            </p-dropdown>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mb-3">
+          <div class="mb-3 table-responsive">
+              <p><b>Responsáveis:</b></p>
+              <p-dropdown
+                id="produto"
+                [options]="cities1"
+                styleClass="w-100"
+              >
+              </p-dropdown>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>nome</th>
+                    <th>email</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <!-- <tr *ngFor="let responsavel of atividade.responsaveis">
+                    <td>{{responsavel.nome}}</td>
+                    <td>{{responsavel.email}}</td>
+                  </tr> -->
+                  <tr>
+                    <td>Jefferson antônio Pantoja silva</td>
+                    <td>jeffkd35@gmail.com</td>
+                  </tr>
+                  <tr>
+                    <td>Jefferson antônio Pantoja silva</td>
+                    <td>jeffkd35@gmail.com</td>
+                  </tr>
+                  <tr>
+                    <td>Jefferson antônio Pantoja silva</td>
+                    <td>jeffkd35@gmail.com</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

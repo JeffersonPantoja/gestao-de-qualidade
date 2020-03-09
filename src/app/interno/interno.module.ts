@@ -2,17 +2,20 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { FieldsetModule } from 'primeng/fieldset';
 import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 
 import { ProdutoComponent } from './components/produto/produto.component';
 import { SetorComponent } from './components/setor/setor.component';
 import { InternoRoutingModule } from './interno-routing.module';
 import { InternoComponent } from './interno.component';
 import { AtividadeComponent } from './components/atividade/atividade.component';
-import { AtividadeDetalhesComponent } from './components/atividade-detalhes/atividade-detalhes.component';
+import { AtividadeCadastroComponent } from './components/atividade-cadastro/atividade-cadastro.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +23,7 @@ import { AtividadeDetalhesComponent } from './components/atividade-detalhes/ativ
         SetorComponent,
         ProdutoComponent,
         AtividadeComponent,
-        AtividadeDetalhesComponent
+        AtividadeCadastroComponent
     ],
     imports: [
         CommonModule,
@@ -33,7 +36,9 @@ import { AtividadeDetalhesComponent } from './components/atividade-detalhes/ativ
         ReactiveFormsModule,
         HttpClientModule,
         TableModule,
-        FieldsetModule
+        FieldsetModule,
+        DropdownModule,
+        CalendarModule
     ]
 })
 export class InternoModule { }
