@@ -335,7 +335,8 @@ app.get(baseUrl + "interno/atividade/cadastro/setor", (req, res) => {
   }, 1500);
 })
 
-app.get(baseUrl + "interno/usuario/lista", (req, res) => {
+// recebe a query idSetor
+app.get(baseUrl + "interno/usuario/lista?", (req, res) => {
   setTimeout(() => {
     res.json(usuarios);
   }, 1500);

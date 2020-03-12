@@ -27,9 +27,9 @@ export class AtividadeCadastroService {
     );
   }
 
-  public getUsuarios(): Observable<object> {
+  public getResponsaveis(idSetor: number): Observable<object> {
     return this.httpClient.get<Observable<Usuario[]>>(
-      `${environment.URL_BASE}${Url.INTERNO_USUARIO_LISTA}`
+      `${environment.URL_BASE}${Url.INTERNO_USUARIO_LISTA}?idSetor=${idSetor}`
     );
   }
 }

@@ -4,5 +4,6 @@ export enum Message {
     LOGOUT = 'Você saiu',
     SAVE_SUCCESS = 'Salvo com sucesso',
     DEACTIVATED_SUCCESS = 'Desativado com sucesso',
-    ACTIVATED_SUCCESS = 'Ativado com sucesso'
+    ACTIVATED_SUCCESS = 'Ativado com sucesso',
+    FILD_REQUIRED = 'Preencha todos os campos'
 }
