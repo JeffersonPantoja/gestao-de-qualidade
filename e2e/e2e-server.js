@@ -12,48 +12,68 @@ console.log("================================");
 console.log("WEB-SERVICES MOCK INICIALIZADOS");
 console.log("================================");
 
-app.post(baseUrl + "login/enter", (req, res) => {
-
-  const email = req.body.email;
-  const password = req.body.password;
-  let tokenOn;
-
-  setTimeout(() => {
-
-    if (email === "desenvolvedorjefferson@gmail.com" && password === "321321") {
-      const segundosAtuais = Math.floor((new Date()).getTime() / 1000);
-      tokenOn = sign({
-        "usuario": {},
-        "iss": "STORE",
-        "exp": Math.floor(segundosAtuais + 60*60*3.5),
-        "aud": "web",
-        "jti": "wvn1kfNvZfyFtAkQIru4Eg",
-        "iat": segundosAtuais,
-        "nbf": segundosAtuais,
-        "identity": 321321,
-        "name": "Jefferson Antônio Pantoja",
-        "roles": [
-          "RESTRITODESISACAD"
-        ],
-        "permissions": {},
-        "params": {
-            "dv": "0",
-            "serverName": "gestor-de-qualidade",
-            "eMail": "gestor@mock.com",
-            "nomeCompleto": "Gestor Fulano da Silva Sauro"
-        }
-      }, "aB0bOR4_$4l9adA");
-    }
-
-    if (tokenOn !== undefined) {
-      res.json({
-        "token": tokenOn
-      });
-    } else {
-      res.status(401).send("Email ou senha inválido");
-    }
-  }, 1500);
-});
+var produtos = [
+  {
+    "id": 1,
+    "nome": "Produto 01",
+    "descricao": "Descrição 01",
+    "ativo": true
+  },
+  {
+    "id": 2,
+    "nome": "Produto 02",
+    "descricao": "Descrição 02",
+    "ativo": true
+  },
+  {
+    "id": 3,
+    "nome": "Produto 03",
+    "descricao": "Descrição 03",
+    "ativo": true
+  },
+  {
+    "id": 4,
+    "nome": "Produto 04",
+    "descricao": "Descrição 04",
+    "ativo": true
+  },
+  {
+    "id": 5,
+    "nome": "Produto 05",
+    "descricao": "Descrição 05",
+    "ativo": true
+  },
+  {
+    "id": 6,
+    "nome": "Produto 06",
+    "descricao": "Descrição 06",
+    "ativo": true
+  },
+  {
+    "id": 7,
+    "nome": "Produto 07",
+    "descricao": "Descrição 07",
+    "ativo": true
+  },
+  {
+    "id": 8,
+    "nome": "Produto 08",
+    "descricao": "Descrição 08",
+    "ativo": true
+  },
+  {
+    "id": 9,
+    "nome": "Produto 09",
+    "descricao": "Descrição 09",
+    "ativo": true
+  },
+  {
+    "id": 10,
+    "nome": "Produto 10",
+    "descricao": "Descrição 10",
+    "ativo": true
+  },
+];
 
 var setores = [
   {
@@ -118,6 +138,76 @@ var setores = [
   },
 ];
 
+let usuarios = [
+  {
+    id: 1,
+    nome: 'João 01',
+    email: 'joao@teste.com',
+    cpf: '999.999.999-99',
+    setor: setores[0],
+    perfil: 'C'
+  },
+  {
+    id: 2,
+    nome: 'Maria 01',
+    email: 'maria@teste.com',
+    cpf: '999.999.999-99',
+    setor: setores[0],
+    perfil: 'C'
+  },
+  {
+    id: 1,
+    nome: 'Antônio 01',
+    email: 'antonio@teste.com',
+    cpf: '999.999.999-99',
+    setor: setores[0],
+    perfil: 'C'
+  }
+]
+
+app.post(baseUrl + "login/enter", (req, res) => {
+
+  const email = req.body.email;
+  const password = req.body.password;
+  let tokenOn;
+
+  setTimeout(() => {
+
+    if (email === "desenvolvedorjefferson@gmail.com" && password === "321321") {
+      const segundosAtuais = Math.floor((new Date()).getTime() / 1000);
+      tokenOn = sign({
+        "usuario": {},
+        "iss": "STORE",
+        "exp": Math.floor(segundosAtuais + 60*60*3.5),
+        "aud": "web",
+        "jti": "wvn1kfNvZfyFtAkQIru4Eg",
+        "iat": segundosAtuais,
+        "nbf": segundosAtuais,
+        "identity": 321321,
+        "name": "Jefferson Antônio Pantoja",
+        "roles": [
+          "RESTRITODESISACAD"
+        ],
+        "permissions": {},
+        "params": {
+            "dv": "0",
+            "serverName": "gestor-de-qualidade",
+            "eMail": "gestor@mock.com",
+            "nomeCompleto": "Gestor Fulano da Silva Sauro"
+        }
+      }, "aB0bOR4_$4l9adA");
+    }
+
+    if (tokenOn !== undefined) {
+      res.json({
+        "token": tokenOn
+      });
+    } else {
+      res.status(401).send("Email ou senha inválido");
+    }
+  }, 1500);
+});
+
 app.get(baseUrl + "interno/setor?", (req, res) => {
   const firstItemPage = parseInt(req.query.firstItemPage, 10);
   setTimeout(() => {
@@ -125,6 +215,12 @@ app.get(baseUrl + "interno/setor?", (req, res) => {
       totalRecords: setores.length,
       setores: setores.slice(firstItemPage, firstItemPage+ 10)
     });
+  }, 1500);
+})
+
+app.get(baseUrl + "interno/setor/lista", (req, res) => {
+  setTimeout(() => {
+    res.json(setores);
   }, 1500);
 })
 
@@ -148,69 +244,6 @@ app.put(baseUrl + "interno/setor", (req, res) => {
   }, 1500);
 })
 
-var produtos = [
-  {
-    "id": 1,
-    "nome": "Produto 01",
-    "descricao": "Descrição 01",
-    "ativo": true
-  },
-  {
-    "id": 2,
-    "nome": "Produto 02",
-    "descricao": "Descrição 02",
-    "ativo": true
-  },
-  {
-    "id": 3,
-    "nome": "Produto 03",
-    "descricao": "Descrição 03",
-    "ativo": true
-  },
-  {
-    "id": 4,
-    "nome": "Produto 04",
-    "descricao": "Descrição 04",
-    "ativo": true
-  },
-  {
-    "id": 5,
-    "nome": "Produto 05",
-    "descricao": "Descrição 05",
-    "ativo": true
-  },
-  {
-    "id": 6,
-    "nome": "Produto 06",
-    "descricao": "Descrição 06",
-    "ativo": true
-  },
-  {
-    "id": 7,
-    "nome": "Produto 07",
-    "descricao": "Descrição 07",
-    "ativo": true
-  },
-  {
-    "id": 8,
-    "nome": "Produto 08",
-    "descricao": "Descrição 08",
-    "ativo": true
-  },
-  {
-    "id": 9,
-    "nome": "Produto 09",
-    "descricao": "Descrição 09",
-    "ativo": true
-  },
-  {
-    "id": 10,
-    "nome": "Produto 10",
-    "descricao": "Descrição 10",
-    "ativo": true
-  },
-];
-
 app.get(baseUrl + "interno/produto?", (req, res) => {
   const firstItemPage = parseInt(req.query.firstItemPage, 10);
   setTimeout(() => {
@@ -218,6 +251,12 @@ app.get(baseUrl + "interno/produto?", (req, res) => {
       totalRecords: produtos.length,
       produtos: produtos.slice(firstItemPage, firstItemPage+ 10)
     });
+  }, 1500);
+})
+
+app.get(baseUrl + "interno/produto/lista", (req, res) => {
+  setTimeout(() => {
+    res.json(produtos);
   }, 1500);
 })
 
@@ -287,6 +326,18 @@ app.get(baseUrl + "interno/atividade?", (req, res) => {
       totalRecords: atividades.length,
       atividades: atividades.slice(firstItemPage, firstItemPage + 10)
     });
+  }, 1500);
+})
+
+app.get(baseUrl + "interno/atividade/cadastro/setor", (req, res) => {
+  setTimeout(() => {
+    res.json(setores);
+  }, 1500);
+})
+
+app.get(baseUrl + "interno/usuario/lista", (req, res) => {
+  setTimeout(() => {
+    res.json(usuarios);
   }, 1500);
 })
 

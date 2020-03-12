@@ -1,4 +1,8 @@
+import { Usuario } from './../../../share/domain/usuario';
+import { Produto } from './../../../share/domain/produto';
+import { AtividadeCadastroService } from './atividade-cadastro.service';
 import { Component, OnInit } from '@angular/core';
+import { Setor } from 'src/app/share/domain/setor';
 
 @Component({
   selector: 'app-atividade-cadastro',
@@ -7,18 +11,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtividadeCadastroComponent implements OnInit {
 
-  cities1 = [
-    {label: 'Select City', value: null},
-    {label: 'New York', value: {id: 1, name: 'New York', code: 'NY'}},
-    {label: 'Rome', value: {id: 2, name: 'Rome', code: 'RM'}},
-    {label: 'London', value: {id: 3, name: 'London', code: 'LDN'}},
-    {label: 'Istanbul', value: {id: 4, name: 'Istanbul', code: 'IST'}},
-    {label: 'Paris', value: {id: 5, name: 'Paris', code: 'PRS'}}
-];
+  public status = [
+    {label: 'Planejado', value: 'A'},
+    {label: 'Projeto e dessenvolvimento do produto', value: 'B'},
+    {label: 'Projeto e dessenvolvimento do processo', value: 'C'},
+    {label: 'Validação do produto e do processo', value: 'D'},
+    {label: 'Análise e ação corretiva', value: 'E'},
+    {label: 'Cancelado', value: 'F'}
+  ];
 
-  constructor() { }
+  public setores: Setor[];
+
+  public produtos: Produto[];
+
+  public usuarios: Usuario[];
+
+  public usuariosSelected: Usuario[];
+
+  constructor(
+    private atividadeCadastroService: AtividadeCadastroService
+  ) {
+    this.setores = [];
+    this.produtos = [];
+    this.usuarios = [];
+    this.usuariosSelected = [];
+  }
 
   ngOnInit(): void {
+    this.atividadeCadastroService.getSetores().subscribe((setores: Setor[]) => this.setores = setores);
+    this.atividadeCadastroService.getProdutos().subscribe((produtos: Produto[]) => this.produtos = produtos);
+    this.atividadeCadastroService.getUsuarios().subscribe((usuarios: Usuario[]) => this.usuarios = usuarios);
   }
 
 }
