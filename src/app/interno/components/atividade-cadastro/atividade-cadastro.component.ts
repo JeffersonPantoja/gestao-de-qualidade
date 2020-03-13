@@ -1,19 +1,21 @@
+import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { Atividade } from './../../../share/domain/atividade';
+import { Produto } from './../../../share/domain/produto';
+import { Setor } from './../../../share/domain/setor';
+import { Usuario } from './../../../share/domain/usuario';
 import { Message } from './../../../share/enum/message.enum';
 import { ToastService } from './../../../share/service/toast/toast.service';
-import { Setor } from './../../../share/domain/setor';
-import { Atividade } from './../../../share/domain/atividade';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Usuario } from './../../../share/domain/usuario';
-import { Produto } from './../../../share/domain/produto';
 import { AtividadeCadastroService } from './atividade-cadastro.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-atividade-cadastro',
   templateUrl: './atividade-cadastro.component.html',
   styleUrls: ['./atividade-cadastro.component.css']
 })
-export class AtividadeCadastroComponent implements OnInit {
+export class AtividadeCadastroComponent implements OnInit, OnDestroy {
 
   public status = [
     {label: 'Planejado', value: 'A'},
@@ -30,29 +32,30 @@ export class AtividadeCadastroComponent implements OnInit {
 
   public responsaveis: Usuario[];
 
-  public responsaveisSelected: Usuario[];
-
   public atividadeForm: FormGroup;
 
   constructor(
     private atividadeCadastroService: AtividadeCadastroService,
     private formbuilder: FormBuilder,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) {
     this.setores = [];
     this.produtos = [];
     this.responsaveis = [];
-    this.responsaveisSelected = [];
   }
 
-  ngOnInit(): void {
 
-    this.createAtividadeForm(new Atividade());
+  ngOnInit(): void {
+    this.createAtividadeForm(this.atividadeCadastroService.atividade);
     this.getSetores();
     this.setListenerSetor();
     this.setListenerResponsavel();
     this.getProdutos();
+  }
 
+  ngOnDestroy(): void {
+    this.atividadeCadastroService.atividade = new Atividade();
   }
 
   private createAtividadeForm(atividade: Atividade) {
@@ -64,8 +67,14 @@ export class AtividadeCadastroComponent implements OnInit {
       setor: [atividade.setor, Validators.required],
       responsavel: [],
       responsaveis: [atividade.responsaveis],
-      dataInicio: [atividade.dataInicio, Validators.required],
-      dataFim: [atividade.dataFim, Validators.required],
+      dataInicio: [
+        atividade.dataInicio.length > 0 ? new Date(atividade.dataInicio) : '',
+        Validators.required
+      ],
+      dataFim: [
+        atividade.dataFim.length > 0 ? new Date(atividade.dataFim) : '',
+        Validators.required
+      ],
       status: [atividade.status, Validators.required]
     });
   }
@@ -73,7 +82,13 @@ export class AtividadeCadastroComponent implements OnInit {
   private getSetores() {
     this.atividadeCadastroService.getSetores().subscribe((setores: Setor[]) => {
       this.setores = setores;
-      this.atividadeForm.controls.setor.setValue(setores[0]);
+      if (this.atividadeCadastroService.atividade.id !== null) {
+        setores.forEach((setor: Setor) => {
+          if (setor.id === this.atividadeCadastroService.atividade.setor.id) {
+            this.atividadeForm.controls.setor.setValue(setor);
+          }
+        });
+      }
       this.atividadeCadastroService.getResponsaveis(setores[0].id).subscribe((usuarios: Usuario[]) => this.responsaveis = usuarios);
     });
   }
@@ -86,23 +101,67 @@ export class AtividadeCadastroComponent implements OnInit {
 
   private setListenerResponsavel() {
     this.atividadeForm.get('responsavel').valueChanges.subscribe((responsavel: Usuario) => {
-      this.atividadeForm.value.responsaveis.push(responsavel);
+      let exist = false;
+      this.atividadeForm.value.responsaveis.forEach((responsavelFilter: Usuario) => {
+        if (responsavel.id === responsavelFilter.id) {
+          exist = true;
+        }
+      });
+      if (!exist) {
+        this.atividadeForm.value.responsaveis.push(responsavel);
+      }
     });
   }
 
   private getProdutos() {
     this.atividadeCadastroService.getProdutos().subscribe((produtos: Produto[]) => {
       this.produtos = produtos;
-      this.atividadeForm.controls.produto.setValue(produtos[0]);
+      if (this.atividadeCadastroService.atividade.id !== null) {
+        this.produtos.forEach((produto: Produto) => {
+          if (produto.id === this.atividadeCadastroService.atividade.produto.id) {
+            this.atividadeForm.controls.produto.setValue(produto);
+          }
+        });
+      }
     });
   }
 
   public onSubmit(): void {
-    console.log(this.atividadeForm.value);
     if (this.atividadeForm.valid) {
+      if (this.atividadeCadastroService.atividade.id === null) {
+        this.atividadeCadastroService.register(this.createAtividade(new Atividade()))
+        .subscribe(() => {
+          this.toastService.showSuccess.next(Message.SAVE_SUCCESS);
+          this.router.navigate(['/interno/atividade']);
+        });
+      } else {
+        this.atividadeCadastroService.edit(
+          this.createAtividade(this.atividadeCadastroService.atividade)
+        ).subscribe(() => {
+          this.toastService.showSuccess.next(Message.SAVE_SUCCESS);
+          this.router.navigate(['/interno/atividade']);
+        });
+      }
     } else {
       this.toastService.showError.next(Message.FILD_REQUIRED);
     }
+  }
+
+  private createAtividade(atividade: Atividade): Atividade {
+    atividade.titulo = this.atividadeForm.value.titulo;
+    atividade.descricao = this.atividadeForm.value.descricao;
+    atividade.produto = this.atividadeForm.value.produto;
+    atividade.setor = this.atividadeForm.value.setor;
+    atividade.responsaveis = this.atividadeForm.value.responsaveis;
+    atividade.dataInicio = this.atividadeForm.value.dataInicio.toISOString();
+    atividade.dataFim = this.atividadeForm.value.dataFim.toISOString();
+    atividade.status = this.atividadeForm.value.status;
+    return atividade;
+  }
+
+  public removeResponsavel(responsavel: Usuario): void {
+    this.atividadeForm.value.responsaveis = this.atividadeForm.value.responsaveis
+      .filter((responsavelFilter: Usuario) => responsavelFilter.id !== responsavel.id);
   }
 }
 

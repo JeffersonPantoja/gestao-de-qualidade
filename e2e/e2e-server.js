@@ -295,8 +295,8 @@ var atividades = [
       setor: setores[0],
       perfil: 'G'
     }],
-    dataInicio: '15/04/2020',
-    dataFim: '01/08/2020',
+    dataInicio: '2020-03-13T05:05:53.171Z',
+    dataFim: '2020-03-13T05:05:53.171Z',
     status: 'A'
   },
   {
@@ -313,8 +313,8 @@ var atividades = [
       setor: setores[0],
       perfil: 'G'
     }],
-    dataInicio: '15/04/2020',
-    dataFim: '01/08/2020',
+    dataInicio: '2020-03-13T05:05:53.171Z',
+    dataFim: '2020-03-13T05:05:53.171Z',
     status: 'B'
   }
 ]
@@ -329,9 +329,23 @@ app.get(baseUrl + "interno/atividade?", (req, res) => {
   }, 1500);
 })
 
-app.get(baseUrl + "interno/atividade/cadastro/setor", (req, res) => {
+app.post(baseUrl + "interno/atividade", (req, res) => {
   setTimeout(() => {
-    res.json(setores);
+    req.body.id = (new Date()).getTime();
+    atividades.push(req.body);
+    res.json();
+  }, 1500);
+})
+
+app.put(baseUrl + "interno/atividade", (req, res) => {
+  setTimeout(() => {
+    atividades = atividades.map((atividade) => {
+      if (atividade.id === req.body.id) {
+        atividade = req.body;
+      }
+      return atividade;
+    })
+    res.json();
   }, 1500);
 })
 

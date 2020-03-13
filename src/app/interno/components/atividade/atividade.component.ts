@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AtividadeCadastroService } from './../atividade-cadastro/atividade-cadastro.service';
 import { Converter } from './../../../share/converter/converter';
 import { Status } from './../../../share/enum/status.enum';
 import { AtividadeService } from './atividade.service';
@@ -20,7 +22,11 @@ export class AtividadeComponent implements OnInit {
 
   public teste = false;
 
-  constructor(private atividadeService: AtividadeService) {
+  constructor(
+    private atividadeService: AtividadeService,
+    private atividadeCadastroService: AtividadeCadastroService,
+    private router: Router
+  ) {
     this.atividades = [];
     this.totalRecords = 0;
   }
@@ -43,6 +49,16 @@ export class AtividadeComponent implements OnInit {
 
   public openRegister(): void {
     console.log('open');
+  }
+
+  public getLocaleDateTime(dateIso: string): string {
+    const date = new Date(dateIso);
+    return date.toLocaleString();
+  }
+
+  public edit(atividade: Atividade): void {
+    this.atividadeCadastroService.atividadeSubject.next(atividade);
+    this.router.navigate(['/interno/atividade-cadastro']);
   }
 
 }

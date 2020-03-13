@@ -38,9 +38,7 @@ import { AtividadeCadastroComponent } from './components/atividade-cadastro/ativ
         HttpClientModule,
         TableModule,
         FieldsetModule,
-        DropdownModule,
         CalendarModule,
-        AutoCompleteModule
     ]
 })
 export class InternoModule { }

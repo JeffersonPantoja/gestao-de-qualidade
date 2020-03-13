@@ -31,6 +31,7 @@
                       <th>Data de início</th>
                       <th>Data de termino</th>
                       <th>Status</th>
+                      <th>Editar</th>
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-atividade let-expanded="expanded">
@@ -38,14 +39,22 @@
                       <td>
                         <a href="#" [pRowToggler]="atividade">{{atividade.titulo}}</a>
                       </td>
-                      <td>{{atividade.dataInicio}}</td>
-                      <td>{{atividade.dataFim}}</td>
-                      <td>{{getNameStatus(atividade.status)}}</td>
+                      <td>{{ getLocaleDateTime(atividade.dataInicio)}}</td>
+                      <td>{{ getLocaleDateTime(atividade.dataFim) }}</td>
+                      <td>{{ getNameStatus(atividade.status) }}</td>
+                      <td>
+                        <button
+                          pButton
+                          type="button"
+                          icon="pi pi-pencil"
+                          class="ui-button-warning mr-1"
+                          (click)="edit(atividade)"
+                      ></button>
                   </tr>
               </ng-template>
               <ng-template pTemplate="rowexpansion" let-atividade>
                 <tr>
-                  <td [attr.colspan]="4">
+                  <td [attr.colspan]="5">
                     <div class="row">
                       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-3">
                         <div class="mb-3">

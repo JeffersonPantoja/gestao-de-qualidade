@@ -15,6 +15,7 @@ export class Atividade {
   public status: Status;
 
   constructor() {
+    this.id = null;
     this.titulo = '';
     this.descricao = '';
     this.produto = new Produto();
