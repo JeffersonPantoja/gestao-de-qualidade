@@ -1,4 +1,5 @@
 var express = require("express");
+const fs = require('fs');
 const app = express();
 
 const sign = require("jsonwebtoken").sign;
@@ -353,6 +354,55 @@ app.put(baseUrl + "interno/atividade", (req, res) => {
 app.get(baseUrl + "interno/usuario/lista?", (req, res) => {
   setTimeout(() => {
     res.json(usuarios);
+  }, 1500);
+})
+
+var normas = [
+  {
+    "id": 1,
+    "nome": "Noma 01",
+    "descricao": "Descrição da norma"
+  },
+  {
+    "id": 2,
+    "nome": "Noma 02",
+    "descricao": "Descrição da norma"
+  },
+  {
+    "id": 3,
+    "nome": "Noma 03",
+    "descricao": "Descrição da norma"
+  },
+  {
+    "id": 4,
+    "nome": "Noma 04",
+    "descricao": "Descrição da norma"
+  },
+  {
+    "id": 5,
+    "nome": "Noma 05",
+    "descricao": "Descrição da norma"
+  },
+]
+
+app.get(baseUrl + "interno/catalago/normas?", (req, res) => {
+  const firstItemPage = parseInt(req.query.firstItemPage, 10);
+  setTimeout(() => {
+    res.json({
+      totalRecords: normas.length,
+      normas: normas.slice(firstItemPage, firstItemPage + 10)
+    });
+  }, 1500);
+})
+
+app.get(baseUrl + "interno/catalago/normas/:idNorma", (req, res) => {
+  setTimeout(() => {
+    var file = fs.createReadStream('e2e/coretools.pdf');
+    var stat = fs.statSync('e2e/coretools.pdf');
+    res.setHeader('Content-Length', stat.size);
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=coretools.pdf');
+    file.pipe(res);
   }, 1500);
 })
 

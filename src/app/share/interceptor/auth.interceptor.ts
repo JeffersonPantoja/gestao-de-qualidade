@@ -44,7 +44,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private setHeaderWithoutToken(req: HttpRequest<any>) {
     const authReq = req.clone({
       setHeaders: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
     });
     return authReq;

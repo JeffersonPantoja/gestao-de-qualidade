@@ -61,7 +61,11 @@ export class HomeComponent implements OnInit {
             routerLink: '/interno/atividade'
           },
           { label: 'Incidente' },
-          { label: 'Plano de ação' }
+          { label: 'Plano de ação' },
+          {
+            label: 'Catálago de Normas',
+            routerLink: '/interno/catalago-normas'
+          },
         ]
       }
     ];

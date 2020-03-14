@@ -6,4 +6,5 @@ export enum Url {
     INTERNO_PRODUTO_LISTA = '/interno/produto/lista',
     INTERNO_ATIVIDADE = '/interno/atividade',
     INTERNO_USUARIO_LISTA = '/interno/usuario/lista',
+    INTERNO_CATALAGO_NORMAS= '/interno/catalago/normas',
 }

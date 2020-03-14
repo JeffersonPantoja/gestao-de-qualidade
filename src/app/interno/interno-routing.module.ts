@@ -1,3 +1,4 @@
+import { CatalagoNormasComponent } from './components/catalago-normas/catalago-normas.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -7,6 +8,7 @@ import { AtividadeComponent } from './components/atividade/atividade.component';
 import { ProdutoComponent } from './components/produto/produto.component';
 import { SetorComponent } from './components/setor/setor.component';
 import { InternoComponent } from './interno.component';
+import { NormaIframeComponent } from './components/norma-iframe/norma-iframe.component';
 
 const routes: Routes = [
   {
@@ -16,7 +18,9 @@ const routes: Routes = [
       { path: 'setor', component: SetorComponent },
       { path: 'produto', component: ProdutoComponent },
       { path: 'atividade' , component: AtividadeComponent },
-      { path: 'atividade-cadastro', component: AtividadeCadastroComponent}
+      { path: 'atividade-cadastro', component: AtividadeCadastroComponent},
+      { path: 'catalago-normas', component: CatalagoNormasComponent},
+      { path: 'norma-iframe/:idNorma', component: NormaIframeComponent},
     ],
     canActivateChild: [AuthGuard]
   },

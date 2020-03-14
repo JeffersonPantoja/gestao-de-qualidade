@@ -17,6 +17,8 @@ import { InternoRoutingModule } from './interno-routing.module';
 import { InternoComponent } from './interno.component';
 import { AtividadeComponent } from './components/atividade/atividade.component';
 import { AtividadeCadastroComponent } from './components/atividade-cadastro/atividade-cadastro.component';
+import { CatalagoNormasComponent } from './components/catalago-normas/catalago-normas.component';
+import { NormaIframeComponent } from './components/norma-iframe/norma-iframe.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +26,9 @@ import { AtividadeCadastroComponent } from './components/atividade-cadastro/ativ
         SetorComponent,
         ProdutoComponent,
         AtividadeComponent,
-        AtividadeCadastroComponent
+        AtividadeCadastroComponent,
+        CatalagoNormasComponent,
+        NormaIframeComponent
     ],
     imports: [
         CommonModule,
