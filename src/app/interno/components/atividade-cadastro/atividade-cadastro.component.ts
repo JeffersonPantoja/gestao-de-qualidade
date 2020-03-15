@@ -34,6 +34,8 @@ export class AtividadeCadastroComponent implements OnInit, OnDestroy {
 
   public atividadeForm: FormGroup;
 
+  public currentDate: Date;
+
   constructor(
     private atividadeCadastroService: AtividadeCadastroService,
     private formbuilder: FormBuilder,
@@ -43,6 +45,7 @@ export class AtividadeCadastroComponent implements OnInit, OnDestroy {
     this.setores = [];
     this.produtos = [];
     this.responsaveis = [];
+    this.currentDate = new Date();
   }
 
 
@@ -75,7 +78,6 @@ export class AtividadeCadastroComponent implements OnInit, OnDestroy {
         atividade.dataFim.length > 0 ? new Date(atividade.dataFim) : '',
         Validators.required
       ],
-      status: [atividade.status, Validators.required]
     });
   }
 
@@ -155,13 +157,23 @@ export class AtividadeCadastroComponent implements OnInit, OnDestroy {
     atividade.responsaveis = this.atividadeForm.value.responsaveis;
     atividade.dataInicio = this.atividadeForm.value.dataInicio.toISOString();
     atividade.dataFim = this.atividadeForm.value.dataFim.toISOString();
-    atividade.status = this.atividadeForm.value.status;
     return atividade;
   }
 
   public removeResponsavel(responsavel: Usuario): void {
     this.atividadeForm.value.responsaveis = this.atividadeForm.value.responsaveis
       .filter((responsavelFilter: Usuario) => responsavelFilter.id !== responsavel.id);
+  }
+
+  public getMaxDate(dataInicio: Date): Date {
+    const maxDate = new Date();
+    if (dataInicio instanceof Date) {
+      maxDate.setTime(dataInicio.getTime());
+      const hourInit = dataInicio.getHours();
+      const hourExtra = 23 - hourInit;
+      maxDate.setHours(hourInit + hourExtra);
+    }
+    return maxDate;
   }
 }
 

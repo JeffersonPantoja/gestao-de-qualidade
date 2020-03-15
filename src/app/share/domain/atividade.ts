@@ -12,7 +12,6 @@ export class Atividade {
   public responsaveis: Usuario[];
   public dataInicio: string;
   public dataFim: string;
-  public status: Status;
 
   constructor() {
     this.id = null;
@@ -23,7 +22,6 @@ export class Atividade {
     this.responsaveis = [];
     this.dataInicio = '';
     this.dataFim = '';
-    this.status = Status.PLANEJAMENTO;
   }
 
 }

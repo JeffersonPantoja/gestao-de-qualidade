@@ -141,6 +141,14 @@ var setores = [
 
 let usuarios = [
   {
+    id: 132,
+    nome: 'Gestor Fulano',
+    email: 'gestor@teste.com',
+    cpf: '999.999.999-99',
+    setor: setores[0],
+    perfil: 'G'
+  },
+  {
     id: 1,
     nome: 'João 01',
     email: 'joao@teste.com',
@@ -174,30 +182,33 @@ app.post(baseUrl + "login/enter", (req, res) => {
 
   setTimeout(() => {
 
-    if (email === "desenvolvedorjefferson@gmail.com" && password === "321321") {
-      const segundosAtuais = Math.floor((new Date()).getTime() / 1000);
-      tokenOn = sign({
-        "usuario": {},
-        "iss": "STORE",
-        "exp": Math.floor(segundosAtuais + 60*60*3.5),
-        "aud": "web",
-        "jti": "wvn1kfNvZfyFtAkQIru4Eg",
-        "iat": segundosAtuais,
-        "nbf": segundosAtuais,
-        "identity": 321321,
-        "name": "Jefferson Antônio Pantoja",
-        "roles": [
-          "RESTRITODESISACAD"
-        ],
-        "permissions": {},
-        "params": {
-            "dv": "0",
-            "serverName": "gestor-de-qualidade",
-            "eMail": "gestor@mock.com",
-            "nomeCompleto": "Gestor Fulano da Silva Sauro"
-        }
-      }, "aB0bOR4_$4l9adA");
-    }
+    usuarios.forEach((usuario) => {
+      if (email === usuario.email && password === "321321") {
+        const segundosAtuais = Math.floor((new Date()).getTime() / 1000);
+        console.log(usuario);
+        tokenOn = sign({
+          "usuario": usuario,
+          "iss": "STORE",
+          "exp": Math.floor(segundosAtuais + 60*60*3.5),
+          "aud": "web",
+          "jti": "wvn1kfNvZfyFtAkQIru4Eg",
+          "iat": segundosAtuais,
+          "nbf": segundosAtuais,
+          "identity": 321321,
+          "name": "Jefferson Antônio Pantoja",
+          "roles": [
+            "RESTRITODESISACAD"
+          ],
+          "permissions": {},
+          "params": {
+              "dv": "0",
+              "serverName": "gestor-de-qualidade",
+              "eMail": "gestor@mock.com",
+              "nomeCompleto": "Gestor Fulano da Silva Sauro"
+          }
+        }, "aB0bOR4_$4l9adA");
+      }
+    })
 
     if (tokenOn !== undefined) {
       res.json({
@@ -298,7 +309,6 @@ var atividades = [
     }],
     dataInicio: '2020-03-13T05:05:53.171Z',
     dataFim: '2020-03-13T05:05:53.171Z',
-    status: 'A'
   },
   {
     id: 2,
@@ -316,7 +326,6 @@ var atividades = [
     }],
     dataInicio: '2020-03-13T05:05:53.171Z',
     dataFim: '2020-03-13T05:05:53.171Z',
-    status: 'B'
   }
 ]
 

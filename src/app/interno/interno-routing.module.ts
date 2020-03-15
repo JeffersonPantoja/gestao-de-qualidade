@@ -9,13 +9,18 @@ import { ProdutoComponent } from './components/produto/produto.component';
 import { SetorComponent } from './components/setor/setor.component';
 import { InternoComponent } from './interno.component';
 import { NormaIframeComponent } from './components/norma-iframe/norma-iframe.component';
+import { AcessoGestorGuard } from '../auth/acesso-gestor.guard';
 
 const routes: Routes = [
   {
     path: 'interno', component: InternoComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'setor', component: SetorComponent },
+      {
+        path: 'setor',
+        component: SetorComponent,
+        canActivate: [AcessoGestorGuard],
+      },
       { path: 'produto', component: ProdutoComponent },
       { path: 'atividade' , component: AtividadeComponent },
       { path: 'atividade-cadastro', component: AtividadeCadastroComponent},

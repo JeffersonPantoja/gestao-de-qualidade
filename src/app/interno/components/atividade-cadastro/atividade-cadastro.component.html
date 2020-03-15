@@ -18,21 +18,6 @@
               class="form-control"
             >
           </div>
-          <div class="mb-3">
-            <label>Status <span class="text-danger">*</span></label>
-            <select
-              class="form-control"
-              id="status"
-              formControlName="status"
-            >
-              <option
-                [ngValue]="status.value"
-                *ngFor="let status of status"
-              >
-                {{status.label}}
-              </option>
-            </select>
-          </div>
         </div>
 
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-3">
@@ -57,12 +42,15 @@
             <p-calendar
               formControlName="dataInicio"
               showTime="true"
+              [minDate]="currentDate"
               [style]="{'width': '100%'}"
             >
             </p-calendar>
           </div>
         </div>
-        <div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 mb-3">
+        <div
+          class="col-xl-2 col-lg-6 col-md-6 col-sm-12 mb-3"
+        >
           <div class="mb-3">
             <div>
               <label>Data de termino <span class="text-danger">*</span></label>
@@ -70,6 +58,8 @@
             <p-calendar
               formControlName="dataFim"
               showTime="true"
+              [minDate]="atividadeForm.value['dataInicio']"
+              [maxDate]="getMaxDate(atividadeForm.value['dataInicio'])"
               [style]="{'width': '100%'}"
             >
 

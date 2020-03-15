@@ -30,7 +30,6 @@
                       <th>Título</th>
                       <th>Data de início</th>
                       <th>Data de termino</th>
-                      <th>Status</th>
                       <th>Editar</th>
                   </tr>
               </ng-template>
@@ -41,7 +40,6 @@
                       </td>
                       <td>{{ getLocaleDateTime(atividade.dataInicio)}}</td>
                       <td>{{ getLocaleDateTime(atividade.dataFim) }}</td>
-                      <td>{{ getNameStatus(atividade.status) }}</td>
                       <td>
                         <button
                           pButton
@@ -54,7 +52,7 @@
               </ng-template>
               <ng-template pTemplate="rowexpansion" let-atividade>
                 <tr>
-                  <td [attr.colspan]="5">
+                  <td [attr.colspan]="4">
                     <div class="row">
                       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-3">
                         <div class="mb-3">
