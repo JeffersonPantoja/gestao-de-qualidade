@@ -47,10 +47,6 @@ export class AtividadeComponent implements OnInit {
     return Converter.getNameStatus(status);
   }
 
-  public openRegister(): void {
-    console.log('open');
-  }
-
   public getLocaleDateTime(dateIso: string): string {
     const date = new Date(dateIso);
     return date.toLocaleString();

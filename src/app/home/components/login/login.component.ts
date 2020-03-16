@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthGuard } from 'src/app/auth/auth.guard';
+import { AuthGuard } from 'src/app/guarda-rotas/auth.guard';
 import { Message } from 'src/app/share/enum/message.enum';
 import { Login } from 'src/app/share/interface/login.interface';
 import { ToastService } from 'src/app/share/service/toast/toast.service';

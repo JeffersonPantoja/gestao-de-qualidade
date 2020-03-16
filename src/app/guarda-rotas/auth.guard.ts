@@ -1,4 +1,4 @@
-import { Constants } from './../share/enum/constants.enum';
+import { Constants } from '../share/enum/constants.enum';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 
@@ -62,8 +62,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     const jwtLogin = JWT(login.token);
     localStorage[Constants.TIME_STAMP] = jwtLogin.exp * 1000;
     localStorage[Constants.TOKEN] = login.token;
-    console.log(jwtLogin.usuario);
-
     localStorage[Constants.USUARIO] = JSON.stringify(jwtLogin.usuario);
   }
 }

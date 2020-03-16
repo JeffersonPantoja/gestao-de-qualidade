@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
 
-import { AuthGuard } from '../auth/auth.guard';
+import { AuthGuard } from '../guarda-rotas/auth.guard';
 import { Message } from '../share/enum/message.enum';
 import { ToastService } from '../share/service/toast/toast.service';
+import { Constants } from '../share/enum/constants.enum';
+import { Usuario } from '../share/domain/usuario';
+import { Perfil } from '../share/enum/perfil.enum';
 
 
 @Component({
@@ -33,6 +36,12 @@ export class HomeComponent implements OnInit {
   }
 
   private createMenuIntens(isAutenticated: boolean) {
+    let isGestor = false;
+
+    if (localStorage[Constants.USUARIO] !== null && localStorage[Constants.USUARIO] !== undefined) {
+      const usuario = JSON.parse(localStorage[Constants.USUARIO]) as Usuario;
+      isGestor = usuario.perfil === Perfil.GESTOR;
+    }
     this.items = [
       {
         icon: 'pi pi-home',
@@ -49,19 +58,22 @@ export class HomeComponent implements OnInit {
         items: [
           {
             label: 'Setor',
-            routerLink: '/interno/setor'
+            routerLink: '/interno/setor',
+            visible: isGestor,
           },
           {
             label: 'Produto',
             routerLink: '/interno/produto',
+            visible: isGestor,
           },
-          { label: 'Usuário' },
+          {
+            label: 'Usuário',
+            visible: isGestor,
+          },
           {
             label: 'Atividade',
             routerLink: '/interno/atividade'
           },
-          { label: 'Incidente' },
-          { label: 'Plano de ação' },
           {
             label: 'Catálago de Normas',
             routerLink: '/interno/catalago-normas'

@@ -5,5 +5,6 @@ export enum Message {
     SAVE_SUCCESS = 'Salvo com sucesso',
     DEACTIVATED_SUCCESS = 'Desativado com sucesso',
     ACTIVATED_SUCCESS = 'Ativado com sucesso',
-    FILD_REQUIRED = 'Preencha todos os campos'
+    FILD_REQUIRED = 'Preencha todos os campos',
+    ACCESS_DANIED = 'Acesso Negado'
 }
