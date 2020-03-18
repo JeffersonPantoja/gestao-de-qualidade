@@ -8,6 +8,7 @@ export class Usuario {
   public cpf: string;
   public setor: Setor;
   public perfil: Perfil;
+  public ativo: boolean;
 
   constructor() {
     this.nome = '';
@@ -15,5 +16,6 @@ export class Usuario {
     this.cpf = '';
     this.setor = new Setor();
     this.perfil = Perfil.COLABORADOR;
+    this.ativo = true;
   }
 }

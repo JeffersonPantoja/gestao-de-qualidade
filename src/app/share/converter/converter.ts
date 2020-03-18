@@ -26,4 +26,17 @@ export class Converter {
     }
     return name;
   }
+
+  static getNamePerfil(perfil: Perfil): string {
+    let name = '';
+    switch (perfil) {
+      case Perfil.GESTOR:
+        name = 'Gestor';
+        break;
+      default:
+        name = 'Colaborador';
+        break;
+    }
+    return name;
+  }
 }

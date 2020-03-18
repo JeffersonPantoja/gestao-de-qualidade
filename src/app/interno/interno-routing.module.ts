@@ -1,3 +1,4 @@
+import { UsuarioComponent } from './components/usuario/usuario.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -25,6 +26,11 @@ const routes: Routes = [
       {
         path: 'produto',
         component: ProdutoComponent,
+        canActivate: [GestorGuard],
+      },
+      {
+        path: 'usuario',
+        component: UsuarioComponent,
         canActivate: [GestorGuard],
       },
       {

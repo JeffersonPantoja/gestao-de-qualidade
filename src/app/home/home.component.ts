@@ -57,22 +57,34 @@ export class HomeComponent implements OnInit {
         visible: isAutenticated,
         items: [
           {
-            label: 'Setor',
-            routerLink: '/interno/setor',
+            label: 'Gestor',
             visible: isGestor,
+            items: [
+              {
+                label: 'Setor',
+                routerLink: '/interno/setor',
+                visible: isGestor,
+              },
+              {
+                label: 'Produto',
+                routerLink: '/interno/produto',
+                visible: isGestor,
+              },
+              {
+                label: 'Usuário',
+                routerLink: '/interno/usuario',
+                visible: isGestor,
+              }
+            ]
           },
           {
-            label: 'Produto',
-            routerLink: '/interno/produto',
-            visible: isGestor,
-          },
-          {
-            label: 'Usuário',
-            visible: isGestor,
-          },
-          {
-            label: 'Atividade',
-            routerLink: '/interno/atividade'
+            label: 'Processo Automotivos',
+            items: [
+              {
+                label: 'Atividade',
+                routerLink: '/interno/atividade'
+              },
+            ]
           },
           {
             label: 'Catálago de Normas',

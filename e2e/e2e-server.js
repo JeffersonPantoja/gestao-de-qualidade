@@ -141,36 +141,40 @@ var setores = [
 
 let usuarios = [
   {
-    id: 132,
-    nome: 'Gestor Fulano',
-    email: 'gestor@teste.com',
-    cpf: '999.999.999-99',
-    setor: setores[0],
-    perfil: 'G'
+    "id": 132,
+    "nome": 'Gestor Fulano',
+    "email": 'gestor@teste.com',
+    "cpf": '999.999.999-99',
+    "setor": setores[0],
+    "perfil": 'G',
+    "ativo": true
   },
   {
-    id: 1,
-    nome: 'João 01',
-    email: 'joao@teste.com',
-    cpf: '999.999.999-99',
-    setor: setores[0],
-    perfil: 'C'
+    "id": 1,
+    "nome": 'João 01',
+    "email": 'joao@teste.com',
+    "cpf": '999.999.999-99',
+    "setor": setores[0],
+    "perfil": 'C',
+    "ativo": true
   },
   {
-    id: 2,
-    nome: 'Maria 01',
-    email: 'maria@teste.com',
-    cpf: '999.999.999-99',
-    setor: setores[0],
-    perfil: 'C'
+    "id": 2,
+    "nome": 'Maria 01',
+    "email": 'maria@teste.com',
+    "cpf": '999.999.999-99',
+    "setor": setores[0],
+    "perfil": 'C',
+    "ativo": true
   },
   {
-    id: 1,
-    nome: 'Antônio 01',
-    email: 'antonio@teste.com',
-    cpf: '999.999.999-99',
-    setor: setores[0],
-    perfil: 'C'
+    "id": 1,
+    "nome": 'Antônio 01',
+    "email": 'antonio@teste.com',
+    "cpf": '999.999.999-99',
+    "setor": setores[0],
+    "perfil": 'C',
+    "ativo": true
   }
 ]
 
@@ -292,6 +296,45 @@ app.put(baseUrl + "interno/produto", (req, res) => {
   }, 1500);
 })
 
+
+// ---
+app.get(baseUrl + "interno/usuario?", (req, res) => {
+  const firstItemPage = parseInt(req.query.firstItemPage, 10);
+  setTimeout(() => {
+    res.json({
+      totalRecords: usuarios.length,
+      usuarios: usuarios.slice(firstItemPage, firstItemPage+ 10)
+    });
+  }, 1500);
+})
+
+// recebe a query idSetor
+app.get(baseUrl + "interno/usuario/lista?", (req, res) => {
+  setTimeout(() => {
+    res.json(usuarios);
+  }, 1500);
+})
+
+app.post(baseUrl + "interno/usuario", (req, res) => {
+  setTimeout(() => {
+    req.body.id = (new Date()).getTime();
+    usuarios.push(req.body)
+    res.json();
+  }, 1500);
+})
+
+app.put(baseUrl + "interno/usuario", (req, res) => {
+  setTimeout(() => {
+    usuarios = usuarios.map((usuario) => {
+      if (usuario.id === req.body.id) {
+        usuario = req.body;
+      }
+      return usuario;
+    })
+    res.json();
+  }, 1500);
+})
+
 var atividades = [
   {
     id: 1,
@@ -356,13 +399,6 @@ app.put(baseUrl + "interno/atividade", (req, res) => {
       return atividade;
     })
     res.json();
-  }, 1500);
-})
-
-// recebe a query idSetor
-app.get(baseUrl + "interno/usuario/lista?", (req, res) => {
-  setTimeout(() => {
-    res.json(usuarios);
   }, 1500);
 })
 

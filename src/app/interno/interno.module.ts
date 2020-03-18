@@ -17,6 +17,7 @@ import { AtividadeComponent } from './components/atividade/atividade.component';
 import { AtividadeCadastroComponent } from './components/atividade-cadastro/atividade-cadastro.component';
 import { CatalagoNormasComponent } from './components/catalago-normas/catalago-normas.component';
 import { NormaIframeComponent } from './components/norma-iframe/norma-iframe.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { NormaIframeComponent } from './components/norma-iframe/norma-iframe.com
         AtividadeComponent,
         AtividadeCadastroComponent,
         CatalagoNormasComponent,
-        NormaIframeComponent
+        NormaIframeComponent,
+        UsuarioComponent
     ],
     imports: [
         CommonModule,
