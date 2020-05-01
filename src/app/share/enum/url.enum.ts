@@ -7,5 +7,5 @@ export enum Url {
     INTERNO_USUARIO = '/interno/usuario',
     INTERNO_USUARIO_LISTA = '/interno/usuario/lista',
     INTERNO_ATIVIDADE = '/interno/atividade',
-    INTERNO_CATALAGO_NORMAS= '/interno/catalago/normas'
+    INTERNO_CATALAGO_NORMAS= '/api-gestao-normas/catalago/normas'
 }

@@ -25,13 +25,13 @@ export class ProdutoService {
   }
 
   public register(produto: Produto): Observable<object> {
-    return this.httpClient.post<Observable<Paginator>>(
+    return this.httpClient.post<Observable<object>>(
       `${environment.URL_BASE}${Url.INTERNO_PRODUTO}`, produto
     );
   }
 
   public edit(produto: Produto): Observable<object> {
-    return this.httpClient.put<Observable<Paginator>>(
+    return this.httpClient.put<Observable<object>>(
       `${environment.URL_BASE}${Url.INTERNO_PRODUTO}`, produto
     );
   }

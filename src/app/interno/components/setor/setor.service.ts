@@ -24,13 +24,13 @@ export class SetorService {
   }
 
   public register(setor: Setor): Observable<object> {
-    return this.httpClient.post<Observable<Paginator>>(
+    return this.httpClient.post<Observable<object>>(
       `${environment.URL_BASE}${Url.INTERNO_SETOR}`, setor
     );
   }
 
   public edit(setor: Setor): Observable<object> {
-    return this.httpClient.put<Observable<Paginator>>(
+    return this.httpClient.put<Observable<object>>(
       `${environment.URL_BASE}${Url.INTERNO_SETOR}`, setor
     );
   }

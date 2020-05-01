@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-
-import { Observable, Subject } from 'rxjs';
-
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Usuario } from '../share/domain/usuario';
-import { Perfil } from '../share/enum/perfil.enum';
 import { Constants } from '../share/enum/constants.enum';
 import { Message } from '../share/enum/message.enum';
+import { Perfil } from '../share/enum/perfil.enum';
 import { ToastService } from '../share/service/toast/toast.service';
+
+
 
 @Injectable({
   providedIn: 'root'

@@ -430,7 +430,7 @@ var normas = [
   },
 ]
 
-app.get(baseUrl + "interno/catalago/normas?", (req, res) => {
+app.get(baseUrl + "api-gestao-normas/catalago/normas?", (req, res) => {
   const firstItemPage = parseInt(req.query.firstItemPage, 10);
   setTimeout(() => {
     res.json({
@@ -440,7 +440,7 @@ app.get(baseUrl + "interno/catalago/normas?", (req, res) => {
   }, 1500);
 })
 
-app.get(baseUrl + "interno/catalago/normas/:idNorma", (req, res) => {
+app.get(baseUrl + "api-gestao-normas/catalago/normas/:idNorma", (req, res) => {
   setTimeout(() => {
     var file = fs.createReadStream('e2e/coretools.pdf');
     var stat = fs.statSync('e2e/coretools.pdf');

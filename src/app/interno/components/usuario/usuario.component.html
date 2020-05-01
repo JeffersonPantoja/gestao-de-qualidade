@@ -117,6 +117,7 @@
               (onLazyLoad)="loadPage($event)"
               [totalRecords]="totalRecords"
               [rows]="10"
+              [resizableColumns]="true"
           >
               <ng-template pTemplate="caption">
                   <div class="d-flex justify-content-between">
@@ -134,8 +135,6 @@
               <ng-template pTemplate="header">
                   <tr>
                       <th>Nome</th>
-                      <th>Email</th>
-                      <th>Cpf</th>
                       <th>Setor</th>
                       <th>Perfil</th>
                       <th>Ações</th>
@@ -144,8 +143,6 @@
               <ng-template pTemplate="body" let-usuario>
                   <tr>
                       <td>{{usuario.nome}}</td>
-                      <td>{{usuario.email}}</td>
-                      <td>{{usuario.cpf}}</td>
                       <td>{{usuario.setor.nome}}</td>
                       <td>{{getNamePerfil(usuario.perfil)}}</td>
                       <td>

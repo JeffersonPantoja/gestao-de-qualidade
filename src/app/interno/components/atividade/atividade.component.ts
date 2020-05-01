@@ -1,11 +1,11 @@
-import { Router } from '@angular/router';
-import { AtividadeCadastroService } from './../atividade-cadastro/atividade-cadastro.service';
-import { Converter } from './../../../share/converter/converter';
-import { Status } from './../../../share/enum/status.enum';
-import { AtividadeService } from './atividade.service';
-import { Atividade } from './../../../share/domain/atividade';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Paginator } from 'src/app/share/interface/paginator.interface';
+import { Converter } from './../../../share/converter/converter';
+import { Atividade } from './../../../share/domain/atividade';
+import { Status } from './../../../share/enum/status.enum';
+import { AtividadeCadastroService } from './../atividade-cadastro/atividade-cadastro.service';
+import { AtividadeService } from './atividade.service';
 
 @Component({
   selector: 'app-atividade',
