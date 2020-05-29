@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:mock": "\"npm run e2e:server\" ng serve --host=0.0.0.0 --disable-host-check --proxy-config ./src/e2e-proxy.conf.json",
+    "start:mock": "concurrently --success first --kill-others \"npm run e2e:server\" \"ng serve --host=0.0.0.0 --disable-host-check --proxy-config ./src/e2e-proxy.conf.json\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
     "bootstrap": "^4.4.1",
+    "concurrently": "^5.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
