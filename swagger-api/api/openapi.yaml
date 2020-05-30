@@ -1,0 +1,692 @@
+openapi: 3.0.1
+info:
+  title: APIs Gestor de Processos
+  description: Interfaces da API de mocks criadas como implementação do protótipo
+    arquitetural.
+  version: 1.0.0
+servers:
+- url: /teste
+tags:
+- name: Login
+  description: Autenticação do sistema
+- name: Setor
+  description: Gerência de setores
+- name: Produto
+  description: Gerência de produtos
+- name: Usuário
+  description: Gerência de usuários
+- name: Atividade
+  description: Gerência de Atividades Diárias
+- name: Catálogo de Normas
+  description: Visualização de normas
+paths:
+  /login/enter:
+    post:
+      tags:
+      - Login
+      summary: Fazer login
+      description: Faz a autenticação no sistema, devolve dois tokens, um para ser
+        utilizado nas APIS de Setor, Produto, Usuário e Atividade.
+      operationId: login
+      requestBody:
+        description: Objeto Login
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: false
+      responses:
+        "200":
+          description: A User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "500":
+          description: Erro interno
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Login
+  /interno/setor:
+    get:
+      tags:
+      - Setor
+      summary: Recupera 10 Setores
+      description: Recupera uma lista paginada de 10 setores, a página é definida
+        pelo índice do primeiro elemento da página que é indicado pela query firstItemPage
+      operationId: internoSetorGET
+      parameters:
+      - name: firstItemPage
+        in: query
+        description: Índice do primeiro item da página
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Setor'
+                x-content-type: application/json
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Setor
+    put:
+      tags:
+      - Setor
+      summary: Atualizar Setor
+      operationId: updateSetor
+      requestBody:
+        description: Objeto Setor para ser atualizado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Setor'
+        required: false
+      responses:
+        "200":
+          description: Ok
+          content: {}
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Setor
+    post:
+      tags:
+      - Setor
+      summary: Cadastrar Setor
+      operationId: addSetor
+      requestBody:
+        description: Objeto Setor para ser cadastrado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Setor'
+        required: false
+      responses:
+        "200":
+          description: Ok
+          content: {}
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Setor
+  /interno/setor/lista:
+    get:
+      tags:
+      - Setor
+      summary: Recupera todos os Setores
+      operationId: internoSetorListaGET
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Setor'
+                x-content-type: application/json
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Setor
+  /interno/produto:
+    get:
+      tags:
+      - Produto
+      summary: Recupera 10 Produtos
+      description: Recupera uma lista paginada de 10 produtos, a página é definida
+        pelo índice do primeiro elemento da página que é indicado pela query firstItemPage
+      operationId: internoProdutoGET
+      parameters:
+      - name: firstItemPage
+        in: query
+        description: Índice do primeiro item da página
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+                x-content-type: application/json
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Produto
+    put:
+      tags:
+      - Produto
+      summary: Atualizar Produto
+      operationId: updateProduto
+      requestBody:
+        description: Objeto Produto para ser atualizado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+        required: false
+      responses:
+        "200":
+          description: Ok
+          content: {}
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Produto
+    post:
+      tags:
+      - Produto
+      summary: Cadastrar Produto
+      operationId: addProduto
+      requestBody:
+        description: Objeto Produto para ser cadastrado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+        required: false
+      responses:
+        "200":
+          description: Ok
+          content: {}
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Produto
+  /interno/produto/lista:
+    get:
+      tags:
+      - Produto
+      summary: Recupera todos os Produtos
+      operationId: internoProdutoListaGET
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+                x-content-type: application/json
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Produto
+  /interno/usuario:
+    get:
+      tags:
+      - Usuário
+      summary: Recupera 10 Usuários
+      description: Recupera uma lista paginada de 10 usuários, a página é definida
+        pelo índice do primeiro elemento da página que é indicado pela query firstItemPage
+      operationId: internoUsuarioGET
+      parameters:
+      - name: firstItemPage
+        in: query
+        description: Índice do primeiro item da página
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+                x-content-type: application/json
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Usurio
+    put:
+      tags:
+      - Usuário
+      summary: Atualizar Usuário
+      operationId: updateUsuario
+      requestBody:
+        description: Objeto Usuário para ser atualizado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+        required: false
+      responses:
+        "200":
+          description: Ok
+          content: {}
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Usurio
+    post:
+      tags:
+      - Usuário
+      summary: Cadastrar usuário
+      operationId: addUsuario
+      requestBody:
+        description: Objeto Usuário para ser cadastrado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+        required: false
+      responses:
+        "200":
+          description: Ok
+          content: {}
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Usurio
+  /interno/usuario/lista:
+    get:
+      tags:
+      - Usuário
+      summary: Recuperar Usuários
+      description: Recupera uma lista de usuários de um determinado setor definido
+        pela query idSetor
+      operationId: internoUsuarioListaGET
+      parameters:
+      - name: idSetor
+        in: query
+        description: id de um setor
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+                x-content-type: application/json
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Usurio
+  /interno/atividade:
+    get:
+      tags:
+      - Atividade
+      summary: Recupera 10 Atividades
+      description: Recupera uma lista paginada de 10 atividades, a página é definida
+        pelo índice do primeiro elemento da página que é indicado pela query firstItemPage
+      operationId: internoAtividadeGET
+      parameters:
+      - name: firstItemPage
+        in: query
+        description: Índice do primeiro item da página
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Atividade'
+                x-content-type: application/json
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Atividade
+    put:
+      tags:
+      - Atividade
+      summary: Atualizar Atividade
+      operationId: updateAtividade
+      requestBody:
+        description: Objeto Atividade para ser atualizado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Atividade'
+        required: false
+      responses:
+        "200":
+          description: Ok
+          content: {}
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Atividade
+    post:
+      tags:
+      - Atividade
+      summary: Cadastrar Atividade
+      operationId: addAtividade
+      requestBody:
+        description: Objeto Atividade para ser cadastrado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Atividade'
+        required: false
+      responses:
+        "200":
+          description: Ok
+          content: {}
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Atividade
+  /api-gestao-normas/catalogo/normas:
+    get:
+      tags:
+      - Catálogo de Normas
+      summary: Recupera 10 Normas
+      description: Recupera uma lista paginada de 10 normas, a página é definida pelo
+        índice do primeiro elemento da página que é indicado pela query firstItemPage
+      operationId: api_gestao_normasCatalogoNormasGET
+      parameters:
+      - name: firstItemPage
+        in: query
+        description: Índice do primeiro item da página
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Norma'
+                x-content-type: application/json
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: CatlogoDeNormas
+  /api-gestao-normas/catalogo/normas/{idNorma}:
+    get:
+      tags:
+      - Catálogo de Normas
+      summary: Recupera uma norma
+      description: Faz o download de uma norma, é um documento no formato PDF
+      operationId: api_gestao_normasCatalogoNormasIdNormaGET
+      parameters:
+      - name: idNorma
+        in: path
+        description: Índice do primeiro item da página
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Documento no formato PDF
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+                x-content-type: application/pdf
+        "500":
+          description: Erro interno
+          content: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: CatlogoDeNormas
+components:
+  schemas:
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          example: gestor@teste.com
+        password:
+          type: string
+          example: "321321"
+    Setor:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+          example: Setor 01
+        descricao:
+          type: string
+          example: Descrição do Setor 01
+        ativo:
+          type: boolean
+      example:
+        ativo: true
+        nome: Setor 01
+        id: 0
+        descricao: Descrição do Setor 01
+      xml:
+        name: Setor
+    Produto:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+          example: Produto 01
+        descricao:
+          type: string
+          example: Descrição do Produto 01
+        ativo:
+          type: boolean
+      example:
+        ativo: true
+        nome: Produto 01
+        id: 0
+        descricao: Descrição do Produto 01
+      xml:
+        name: Produto
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+          example: Jefferson Antônio Pantoja Silva
+        email:
+          type: string
+          example: desenvolvedorjefferson@gmail.com
+        cpf:
+          type: string
+          example: 999.999.999-45
+        setor:
+          $ref: '#/components/schemas/Setor'
+        perfil:
+          type: string
+          description: G para gestor e C para Colaborador
+          enum:
+          - G
+          - C
+        ativo:
+          type: boolean
+      example:
+        setor:
+          ativo: true
+          nome: Setor 01
+          id: 0
+          descricao: Descrição do Setor 01
+        ativo: true
+        cpf: 999.999.999-45
+        nome: Jefferson Antônio Pantoja Silva
+        id: 0
+        email: desenvolvedorjefferson@gmail.com
+        perfil: G
+      xml:
+        name: Produto
+    Atividade:
+      type: object
+      properties:
+        id:
+          type: integer
+        titulo:
+          type: string
+          example: Atividade 01
+        descricao:
+          type: string
+          example: Descrição da atividade 01
+        produto:
+          $ref: '#/components/schemas/Produto'
+        setor:
+          $ref: '#/components/schemas/Setor'
+        responsaveis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Usuario'
+        dataInicio:
+          type: string
+          description: Formato (ISO 8601)
+          example: '{}'
+        dataFim:
+          type: string
+          description: Formato (ISO 8601)
+          example: '{}'
+        ativo:
+          type: boolean
+      example:
+        setor:
+          ativo: true
+          nome: Setor 01
+          id: 0
+          descricao: Descrição do Setor 01
+        ativo: true
+        produto:
+          ativo: true
+          nome: Produto 01
+          id: 0
+          descricao: Descrição do Produto 01
+        dataFim: '{}'
+        titulo: Atividade 01
+        responsaveis:
+        - setor:
+            ativo: true
+            nome: Setor 01
+            id: 0
+            descricao: Descrição do Setor 01
+          ativo: true
+          cpf: 999.999.999-45
+          nome: Jefferson Antônio Pantoja Silva
+          id: 0
+          email: desenvolvedorjefferson@gmail.com
+          perfil: G
+        - setor:
+            ativo: true
+            nome: Setor 01
+            id: 0
+            descricao: Descrição do Setor 01
+          ativo: true
+          cpf: 999.999.999-45
+          nome: Jefferson Antônio Pantoja Silva
+          id: 0
+          email: desenvolvedorjefferson@gmail.com
+          perfil: G
+        id: 0
+        dataInicio: '{}'
+        descricao: Descrição da atividade 01
+      xml:
+        name: Produto
+    Norma:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+          example: Norma 01
+        descricao:
+          type: string
+          example: Descrição da norma 01
+      example:
+        nome: Norma 01
+        id: 0
+        descricao: Descrição da norma 01
+      xml:
+        name: Produto
+    inline_response_200:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoxMzIsIm5vbWUiOiJHZXN0b3IgRnVsYW5vIiwiZW1haWwiOiJnZXN0b3JAdGVzdGUuY29tIiwiY3BmIjoiOTk5Ljk5OS45OTktOTkiLCJzZXRvciI6eyJpZCI6MSwibm9tZSI6IlNldG9yIDAxIiwiZGVzY3JpY2FvIjoiRGVzY3Jpw6fDo28gMDEiLCJhdGl2byI6dHJ1ZX0sInBlcmZpbCI6IkciLCJhdGl2byI6dHJ1ZX0sImlzcyI6IlNUT1JFIiwiZXhwIjoxNTg0OTI1MzEwLCJhdWQiOiJ3ZWIiLCJqdGkiOiJ3dm4xa2ZOdlpmeUZ0QWtRSXJ1NEVnIiwiaWF0IjoxNTg0OTEyNzEwLCJuYmYiOjE1ODQ5MTI3MTAsImlkZW50aXR5IjozMjEzMjEsIm5hbWUiOiJKZWZmZXJzb24gQW50w7RuaW8gUGFudG9qYSIsInJvbGVzIjpbIlJFU1RSSVRPREVTSVNBQ0FEIl0sInBlcm1pc3Npb25zIjp7fSwicGFyYW1zIjp7ImR2IjoiMCIsInNlcnZlck5hbWUiOiJnZXN0b3ItZGUtcXVhbGlkYWRlIiwiZU1haWwiOiJnZXN0b3JAbW9jay5jb20iLCJub21lQ29tcGxldG8iOiJHZXN0b3IgRnVsYW5vIGRhIFNpbHZhIFNhdXJvIn19.l9jrBGOLEnxasqibx_kNNAHZJ_P0JSHkE6BFvL51LjA
+        tokenCatalogo:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoxMzIsIm5vbWUiOiJHZXN0b3IgRnVsYW5vIiwiZW1haWwiOiJnZXN0b3JAdGVzdGUuY29tIiwiY3BmIjoiOTk5Ljk5OS45OTktOTkiLCJzZXRvciI6eyJpZCI6MSwibm9tZSI6IlNldG9yIDAxIiwiZGVzY3JpY2FvIjoiRGVzY3Jpw6fDo28gMDEiLCJhdGl2byI6dHJ1ZX0sInBlcmZpbCI6IkciLCJhdGl2byI6dHJ1ZX0sImlzcyI6IlNUT1JFIiwiZXhwIjoxNTg0OTI1MzEwLCJhdWQiOiJ3ZWIiLCJqdGkiOiJ3dm4xa2ZOdlpmeUZ0QWtRSXJ1NEVnIiwiaWF0IjoxNTg0OTEyNzEwLCJuYmYiOjE1ODQ5MTI3MTAsImlkZW50aXR5IjozMjEzMjEsIm5hbWUiOiJKZWZmZXJzb24gQW50w7RuaW8gUGFudG9qYSIsInJvbGVzIjpbIlJFU1RSSVRPREVTSVNBQ0FEIl0sInBlcm1pc3Npb25zIjp7fSwicGFyYW1zIjp7ImR2IjoiMCIsInNlcnZlck5hbWUiOiJnZXN0b3ItZGUtcXVhbGlkYWRlIiwiZU1haWwiOiJnZXN0b3JAbW9jay5jb20iLCJub21lQ29tcGxldG8iOiJHZXN0b3IgRnVsYW5vIGRhIFNpbHZhIFNhdXJvIn19.l9jrBGOLEnxasqibx_kNNAHZJ_P0JSHkE6BFvL51LjA
+      example:
+        tokenCatalogo: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoxMzIsIm5vbWUiOiJHZXN0b3IgRnVsYW5vIiwiZW1haWwiOiJnZXN0b3JAdGVzdGUuY29tIiwiY3BmIjoiOTk5Ljk5OS45OTktOTkiLCJzZXRvciI6eyJpZCI6MSwibm9tZSI6IlNldG9yIDAxIiwiZGVzY3JpY2FvIjoiRGVzY3Jpw6fDo28gMDEiLCJhdGl2byI6dHJ1ZX0sInBlcmZpbCI6IkciLCJhdGl2byI6dHJ1ZX0sImlzcyI6IlNUT1JFIiwiZXhwIjoxNTg0OTI1MzEwLCJhdWQiOiJ3ZWIiLCJqdGkiOiJ3dm4xa2ZOdlpmeUZ0QWtRSXJ1NEVnIiwiaWF0IjoxNTg0OTEyNzEwLCJuYmYiOjE1ODQ5MTI3MTAsImlkZW50aXR5IjozMjEzMjEsIm5hbWUiOiJKZWZmZXJzb24gQW50w7RuaW8gUGFudG9qYSIsInJvbGVzIjpbIlJFU1RSSVRPREVTSVNBQ0FEIl0sInBlcm1pc3Npb25zIjp7fSwicGFyYW1zIjp7ImR2IjoiMCIsInNlcnZlck5hbWUiOiJnZXN0b3ItZGUtcXVhbGlkYWRlIiwiZU1haWwiOiJnZXN0b3JAbW9jay5jb20iLCJub21lQ29tcGxldG8iOiJHZXN0b3IgRnVsYW5vIGRhIFNpbHZhIFNhdXJvIn19.l9jrBGOLEnxasqibx_kNNAHZJ_P0JSHkE6BFvL51LjA
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoxMzIsIm5vbWUiOiJHZXN0b3IgRnVsYW5vIiwiZW1haWwiOiJnZXN0b3JAdGVzdGUuY29tIiwiY3BmIjoiOTk5Ljk5OS45OTktOTkiLCJzZXRvciI6eyJpZCI6MSwibm9tZSI6IlNldG9yIDAxIiwiZGVzY3JpY2FvIjoiRGVzY3Jpw6fDo28gMDEiLCJhdGl2byI6dHJ1ZX0sInBlcmZpbCI6IkciLCJhdGl2byI6dHJ1ZX0sImlzcyI6IlNUT1JFIiwiZXhwIjoxNTg0OTI1MzEwLCJhdWQiOiJ3ZWIiLCJqdGkiOiJ3dm4xa2ZOdlpmeUZ0QWtRSXJ1NEVnIiwiaWF0IjoxNTg0OTEyNzEwLCJuYmYiOjE1ODQ5MTI3MTAsImlkZW50aXR5IjozMjEzMjEsIm5hbWUiOiJKZWZmZXJzb24gQW50w7RuaW8gUGFudG9qYSIsInJvbGVzIjpbIlJFU1RSSVRPREVTSVNBQ0FEIl0sInBlcm1pc3Npb25zIjp7fSwicGFyYW1zIjp7ImR2IjoiMCIsInNlcnZlck5hbWUiOiJnZXN0b3ItZGUtcXVhbGlkYWRlIiwiZU1haWwiOiJnZXN0b3JAbW9jay5jb20iLCJub21lQ29tcGxldG8iOiJHZXN0b3IgRnVsYW5vIGRhIFNpbHZhIFNhdXJvIn19.l9jrBGOLEnxasqibx_kNNAHZJ_P0JSHkE6BFvL51LjA
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

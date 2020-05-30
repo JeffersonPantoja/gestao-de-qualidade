@@ -1,10 +1,11 @@
 {
   "name": "gestao-de-qualidade",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:mock": "concurrently --success first --kill-others \"npm run e2e:server\" \"ng serve --host=0.0.0.0 --disable-host-check --proxy-config ./src/e2e-proxy.conf.json\"",
+    "start:mock:api": "concurrently --success first --kill-others \"npm run e2e:server\" \"node swagger-api/index.js\" \"ng serve --host=0.0.0.0 --disable-host-check --proxy-config ./src/e2e-proxy.conf.json\"",
+    "start:api": "node swagger-api/index.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -31,7 +32,10 @@
     "primeng": "^9.0.0-rc.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "oas3-tools": "^2.0.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.3",
