@@ -25,8 +25,7 @@ paths:
       tags:
       - Login
       summary: Fazer login
-      description: Faz a autenticação no sistema, devolve dois tokens, um para ser
-        utilizado nas APIS de Setor, Produto, Usuário e Atividade.
+      description: Faz a autenticação no sistema,devolve um token para ser utilizado nas rotas do sistema.
       operationId: login
       requestBody:
         description: Objeto Login

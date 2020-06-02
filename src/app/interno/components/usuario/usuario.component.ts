@@ -10,6 +10,7 @@ import { Paginator } from 'src/app/share/interface/paginator.interface';
 import { ToastService } from 'src/app/share/service/toast/toast.service';
 import { AtividadeCadastroService } from './../atividade-cadastro/atividade-cadastro.service';
 import { UsuarioService } from './usuario.service';
+import { Constants } from 'src/app/share/enum/constants.enum';
 
 @Component({
   selector: 'app-usuario',
@@ -79,11 +80,12 @@ export class UsuarioComponent implements OnInit {
   }
 
   public loadPage(event: {first: number}): void {
+    const meuUsuario = JSON.parse(localStorage[Constants.USUARIO]) as Usuario;
     this.usuarios = [];
     this.pageEvent = event;
     this.usuarioService.getUsuarios(event.first).subscribe((paginator: Paginator) => {
       this.totalRecords = paginator.totalRecords;
-      this.usuarios = paginator.usuarios;
+      this.usuarios = paginator.usuarios.filter((usuario: Usuario) => usuario.id !== meuUsuario.id);
     });
   }
 
