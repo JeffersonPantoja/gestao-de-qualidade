@@ -1,3 +1,5 @@
+# Protótipo criado para apresnetação do TCC do curso de Arquitetura de Software Distribuído na PUC Minas Virtual
+
 Instalações necessárias:
   docker-engine
   docker-compose
